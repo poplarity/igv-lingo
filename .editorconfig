@@ -1,0 +1,20 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = false
+
+[*.{java,sh}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.tsv]
+indent_style = tab
+# 词表的第一列是 class 常量池字面量，末尾空格有语义，绝对不能自动裁剪
+trim_trailing_whitespace = false
+
+[*.md]
+trim_trailing_whitespace = false

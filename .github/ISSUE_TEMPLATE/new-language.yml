@@ -1,0 +1,24 @@
+name: 新语言 / New language
+description: 我想为 IGV 增加一个语言包
+labels: [i18n]
+body:
+  - type: input
+    id: locale
+    attributes:
+      label: 语言代码
+      description: BCP 47，例如 ja_JP、de_DE、fr_FR
+      placeholder: ja_JP
+    validations:
+      required: true
+  - type: input
+    id: igv
+    attributes:
+      label: IGV 版本
+      placeholder: 2.19.1
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 备注
+      description: 术语习惯、可投入的时间、是否需要帮助生成骨架
