@@ -19,7 +19,7 @@ IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
 版本:    2.19.1
 语言:    zh_CN
 == 审计（生成禁译规则）     禁译规则 1031 条
-== 演练                     命中 102 个类 / 374 处字符串，结构校验通过
+== 演练                     命中 110 个类 / 456 处字符串，结构校验通过
 已安装到 ~/.igv/l10n，重启 IGV 生效
 ```
 
@@ -52,7 +52,7 @@ bin/igv-l10n setup zh_CN      # 构建 + 审计 + 演练 + 安装
 ```bash
 bin/igv-l10n status
 # 加载行:   已启用
-# 最近日志: 01:57:42 [igv-l10n] org/broad/igv/ui/IGVMenuBar : 47 处
+# 最近日志: 01:57:42 [igv-l10n] org/broad/igv/ui/IGVMenuBar : 64 处
 ```
 
 卸载：`bin/igv-l10n uninstall`（只删加载行，文件保留）。
