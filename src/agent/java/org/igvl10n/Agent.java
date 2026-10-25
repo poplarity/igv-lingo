@@ -43,11 +43,16 @@ public final class Agent {
         verbose = Boolean.getBoolean("igv.l10n.verbose");
 
         Path locales = home.resolve("locales");
-        String locale = StringsTable.resolveLocale(locales,
-                System.getProperty("igv.l10n.locale"));
+        String requested = System.getProperty("igv.l10n.locale");
+        String locale = StringsTable.resolveLocale(locales, requested);
         if (locale == null) {
-            log("[igv-l10n] 没有可用语言包（" + locales + "），不汉化");
+            log("[igv-l10n] 没有可用语言包（" + locales + "）"
+                    + (requested == null ? "" : "，指定语言 " + requested + " 不可用")
+                    + "，不汉化");
             return;
+        }
+        if (requested != null && !requested.isBlank() && !requested.equals(locale)) {
+            log("[igv-l10n] 指定语言 " + requested + " 不可用，改用 " + locale);
         }
 
         StringsTable table;

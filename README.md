@@ -200,6 +200,12 @@ igv-l10n/
 **为什么有的地方还是英文？**
 两种原因：一是词表还没翻（看 `coverage`）；二是那条字符串被判定为结构 key（看 `igv/<version>/deny_by_class.tsv`），翻了会出问题。
 
+**Windows 上能用吗？**
+agent 是纯 Java，跨平台。`bin/igv-l10n` 是 bash 脚本，Windows 需用 Git Bash 或 WSL 运行；
+也可以直接用发布包里的 `install.sh`（同样需要 bash），或手工把 `igv-l10n-agent.jar`、
+`locales/`、`deny_by_class.tsv` 放到 `%USERPROFILE%\.igv\l10n\`，再往
+`%USERPROFILE%\.igv\java_arguments` 加同一行 `-javaagent`。
+
 **为什么不用 ResourceBundle？**
 IGV 没有。加 i18n 需要改 2333 处调用点，那是另一个量级的项目；这条路线可以作为上游 PR 慢慢推进。
 

@@ -1,4 +1,5 @@
-# 术语表：保证同一个词全篇一致（check 会提示不一致的译法）
+# 术语表：保证同一个词全篇一致
+# 格式：英文<TAB>首选译法[<TAB>其他可接受译法（用 / 分隔）]
 Genome	基因组
 Track	轨道
 Session	会话
@@ -10,10 +11,11 @@ Locus	位点
 Variant	变异
 Sample	样本
 Read	读段
-Panel	面板
+Panel	面板	栏
 Heatmap	热图
 Autoscale	自动缩放
 Ruler	标尺
-Zoom	缩放
+Zoom	缩放	放大/缩小
 Sequence	序列
 Annotation	注释
+Track Hub	Track Hub	轨道集线器

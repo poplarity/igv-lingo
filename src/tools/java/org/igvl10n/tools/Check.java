@@ -70,6 +70,8 @@ public final class Check {
             List<String> empty = new ArrayList<>();
             List<String> stale = new ArrayList<>();
             List<String> deniedSomewhere = new ArrayList<>();
+            Map<String, List<String>> glossary = loadGlossary(dir.resolve("glossary.tsv"));
+            List<String> termIssues = new ArrayList<>();
             int translated = 0;
             int lineNo = 0;
             for (String line : lines) {
@@ -91,6 +93,16 @@ public final class Check {
                 }
                 translated++;
                 if (!StringsTable.specsMatch(en, tr)) badSpecs.add(en + "  ->  " + tr);
+                boolean matched = false, satisfied = false;
+                for (Map.Entry<String, List<String>> g : glossary.entrySet()) {
+                    if (!en.contains(g.getKey())) continue;
+                    matched = true;
+                    if (g.getValue().stream().anyMatch(tr::contains)) {
+                        satisfied = true;
+                        break;
+                    }
+                }
+                if (matched && !satisfied) termIssues.add(en + "  ->  " + tr);
                 if (jarLiterals != null && !jarLiterals.contains(en)) stale.add(en);
                 for (Map.Entry<String, Set<String>> e : denyByClass.entrySet()) {
                     if (e.getValue().contains(en)) {
@@ -117,12 +129,41 @@ public final class Check {
             if (!deniedSomewhere.isEmpty()) {
                 System.out.println("  被禁译规则覆盖（部分类里不会生效）: " + deniedSomewhere.size());
             }
+            if (!termIssues.isEmpty()) {
+                System.out.println("  术语可能与 glossary.tsv 不一致（提示，不阻断）: " + termIssues.size());
+                termIssues.stream().limit(5).forEach(x -> System.out.println("    " + x));
+            }
         }
         if (failed) {
             System.out.println("\n校验失败");
             System.exit(1);
         }
         System.out.println("\n校验通过");
+    }
+
+    /** glossary.tsv：术语 &lt;TAB&gt; 首选译法 [&lt;TAB&gt; 其他可接受译法，用 / 分隔]。 */
+    private static Map<String, List<String>> loadGlossary(Path file) throws IOException {
+        Map<String, List<String>> out = new LinkedHashMap<>();
+        if (!Files.isReadable(file)) return out;
+        for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
+            if (line.isBlank() || line.startsWith("#")) continue;
+            String[] p = line.split("\t", 3);
+            if (p.length < 2 || p[0].isBlank() || p[1].isBlank()) continue;
+            List<String> allowed = new ArrayList<>();
+            allowed.add(p[1]);
+            if (p.length >= 3) {
+                for (String alt : p[2].split("/")) {
+                    if (!alt.isBlank()) allowed.add(alt.strip());
+                }
+            }
+            out.put(p[0], allowed);
+        }
+        // 长词优先：否则 "Track" 会先命中 "Track Hub"
+        return out.entrySet().stream()
+                .sorted((a, b) -> Integer.compare(b.getKey().length(), a.getKey().length()))
+                .collect(java.util.stream.Collectors.toMap(
+                        Map.Entry::getKey, Map.Entry::getValue,
+                        (a, b) -> a, java.util.LinkedHashMap::new));
     }
 
     private static Map<String, Set<String>> loadDeny(Path deny) throws IOException {
