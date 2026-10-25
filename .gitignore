@@ -1,0 +1,8 @@
+build/
+out/
+dist/
+vendor/
+*.log
+.DS_Store
+.idea/
+*.iml
