@@ -1,0 +1,296 @@
+# IGV 简体中文词表（zh_CN）
+# 格式：英文原文 <TAB> 译文 [<TAB> 备注]；# 开头为注释。
+# 只翻纯展示文字；含 %s / %d / \u0001 的条目必须保留同样数量的占位符。
+# 校验：bin/igv-l10n check   覆盖率：bin/igv-l10n coverage zh_CN
+
+# ---- 一级菜单 ----
+File	文件
+Genomes	基因组
+View	视图
+Tracks	轨道
+Regions	区域
+Tools	工具
+Extras	附加
+Help	帮助
+
+# ---- 文件 / 会话 ----
+Load Genome	载入基因组
+Load Genome from File...	从文件载入基因组...
+Load Genome from URL...	从 URL 载入基因组...
+Load Genome from UCSC GenArk...	从 UCSC GenArk 载入基因组...
+Load From Server...	从服务器载入...
+Load from File...	从文件载入...
+Load from URL...	从 URL 载入...
+Load from Database...	从数据库载入...
+Load from S3 bucket	从 S3 存储桶载入
+Load Track Hub...	载入 Track Hub...
+Load from htsget Server...	从 htsget 服务器载入...
+Load a FASTA, .json, or .genome file...	载入 FASTA、.json 或 .genome 文件...
+Select Hosted Genome...	选择托管基因组...
+Select GenArk Tracks...	选择 GenArk 轨道...
+Select genomes available on the server to appear in menu.	选择要显示在菜单中的服务器基因组。
+Remove genomes which appear in the dropdown list	从下拉列表移除基因组
+New Session...	新建会话...
+Open Session...	打开会话...
+Open Session	打开会话
+Save Session...	保存会话...
+Save Session	保存会话
+Reload Session	重新载入会话
+Reload Tracks	重新载入轨道
+Autosaved Sessions	自动保存的会话
+Recent Files	最近文件
+Clear Recent Files	清除最近文件
+Exit	退出
+Exit the application	退出程序
+Create a new session	新建会话
+Preferences...	首选项...
+Preferences	首选项
+About IGV 	关于 IGV
+Help Forum...	帮助论坛...
+User Guide ... 	用户指南 ... 
+Open web help page	打开网页帮助
+Email support	邮件支持
+Update chrom sizes	更新染色体大小
+Memory test	内存测试
+Reset Preferences	重置首选项
+Run Batch Script...	运行批处理脚本...
+Run igvtools...	运行 igvtools...
+Sort Tracks...	排序轨道...
+Rename Tracks... 	重命名轨道... 
+Overlay Data Tracks... 	叠加数据轨道... 
+Region Navigator ...	区域导航器...
+Export track names	导出轨道名称
+Export track names...	导出轨道名称...
+Export Track Names and Attributes...	导出轨道名称与属性...
+Open gene list manager	打开基因列表管理器
+
+# ---- 视图 / 轨道 ----
+Filter Tracks...	筛选轨道...
+Filter Tracks	筛选轨道
+Group Tracks... 	分组轨道... 
+Combine Data Tracks	合并数据轨道
+Color Legends ...	颜色图例...
+Fit Data to Window	数据适应窗口
+Select Attributes to Show...	选择要显示的属性...
+Gene Lists...	基因列表...
+Reorder Panels...	重排面板...
+Remove Genomes...	移除基因组...
+Remove Genomes	移除基因组
+Add New Panel	新建面板
+Show Name Panel	显示名称面板
+Show Header Panel	显示标题面板
+Show Attribute Display	显示属性栏
+Set window dimensions	设置窗口尺寸
+Set Name Panel Width...	设置名称栏宽度...
+Set Track Height	设置轨道高度
+Track Height (pixels)	轨道高度（像素）
+Show All Tracks	显示所有轨道
+Scatter Plot ...	散点图...
+Save PNG Image ...	保存 PNG 图像...
+Save SVG Image ...	保存 SVG 图像...
+Save PNG Screenshot ...	保存 PNG 截图...
+Save SVG Screenshot ...	保存 SVG 截图...
+Save PNG Image...	保存 PNG 图像...
+Save SVG Image...	保存 SVG 图像...
+Save PNG image...	保存 PNG 图像...
+Save SVG image...	保存 SVG 图像...
+Save image	保存图像
+Creating image...	正在生成图像...
+Switch to standard view	切换到标准视图
+Remove panel	移除面板
+Reorder Panels	重排面板
+Copy sequence	复制序列
+Copy Sequence	复制序列
+Copy Details	复制详情
+Edit description...	编辑描述...
+Zoom	缩放
+Zoom in	放大
+Zoom out	缩小
+Zoom to Region	缩放到区域
+Pan	平移
+Rule panel zoom	标尺缩放
+Track height	轨道高度
+Adjust Transparency	调整透明度
+Log scale	对数坐标
+Overlay	叠加
+Overlay Tracks	叠加轨道
+Separate Tracks	分离轨道
+Rename Track...	重命名轨道...
+Change Track Height...	更改轨道高度...
+Change Font Size...	更改字体大小...
+Font size	字体大小
+Set Data Range...	设置数据范围...
+Set Heatmap Scale...	设置热图色阶...
+Show Data Range	显示数据范围
+Group Autoscale	分组自动缩放
+Show Feature Names	显示特征名称
+Hide Feature Names	隐藏特征名称
+Set Feature Label Field...	设置特征标签字段...
+Feature Label Field: 	特征标签字段：
+Export Alignments...	导出比对...
+Export Features...	导出特征...
+BLAT Sequence	BLAT 序列
+BLAT ...	BLAT...
+Sort frames	排序帧
+Up	上移
+Down	下移
+Track height must be an integer number.	轨道高度必须是整数。
+
+# ---- 比对视图右键菜单 ----
+Color alignments by	按…给比对着色
+Group alignments by	按…分组比对
+Sort alignments by	按…排序比对
+Filter alignments by	按…筛选比对
+Shade alignments by	按…阴影显示比对
+View as pairs	成对视图
+Go to mate	跳转到配对读段
+Copy read sequence	复制读段序列
+Copy read details	复制读段详情
+Copy consensus sequence	复制一致序列
+Copy insert sequence	复制插入序列
+Clear selections	清除选择
+Re-pack alignments	重新排列比对
+Show all bases	显示全部碱基
+Show mismatched bases	显示错配碱基
+Shade base by quality	按质量给碱基着色
+Hide small indels	隐藏小 indel
+Sashimi Plot	Sashimi 图
+Group all tracks	分组全部轨道
+Reverse group order	反转分组顺序
+Add Discordant Pairs to Circular View	将不一致配对加入环形视图
+Add Split Reads to Circular View	将分裂读段加入环形视图
+Link supplementary alignments	关联补充比对
+View mate region in split screen	分屏查看配对区域
+Show Coverage Track	显示覆盖度轨道
+Show Alignment Track	显示比对轨道
+Show Splice Junction Track	显示剪接位点轨道
+Change Track Color...	更改轨道颜色...
+
+# ---- 命令栏 / 搜索 ----
+Go back	后退
+Go forward	前进
+Jump to gene or locus	跳转到基因或位点
+Jump to whole genome view	跳转到全基因组视图
+Select a chromosome to view	选择要查看的染色体
+Filter genome list	筛选基因组列表
+Hosted Genomes	托管基因组
+Download sequence	下载序列
+Download annotations	下载注释
+Use remote sequence	使用远程序列
+Use remote annotations	使用远程注释
+Sequence on local machine	使用本机序列
+Click + to zoom in,  - to zoom out	点击 + 放大，- 缩小
+Define a region of interest.	定义关注区域。
+Enable ruler line in data panels	在数据面板中显示标尺线
+Reload tracks and refresh the screen	重新载入轨道并刷新屏幕
+Resize tracks to fit in window.	调整轨道高度以适应窗口。
+Modify popup text behavior in data panels	修改数据面板的悬浮提示行为
+Chr	染色体
+Start	起点
+End	终点
+Description	描述
+ShortDescription	简短描述
+ToolTipText	悬浮提示
+Show sample names	显示样本名
+Show group names	显示分组名
+Show All Chrs	显示全部染色体
+Sort by expression	按表达量排序
+Sort by amplification	按扩增排序
+Sort by deletion	按缺失排序
+Sort by mutation count	按突变数排序
+Sort by value	按数值排序
+Region of Interest	关注区域
+Regions of Interest	关注区域
+Add a new region	新增区域
+Remove all selected regions	移除所有选中区域
+Clear search box	清除搜索框
+Clear Search	清除搜索
+Clear Regions	清除区域
+Import regions of interest	导入关注区域
+Export Regions of Interest ...	导出关注区域...
+Export Regions ...	导出区域...
+Import Regions ...	导入区域...
+No regions found in file	文件中未找到区域
+Failed to write Region of Interest export file!	写入关注区域导出文件失败！
+
+# ---- 通用按钮 / 对话框 ----
+Cancel	取消
+Done	完成
+Done.	完成。
+Apply	应用
+Ok	确定
+Close	关闭
+Save	保存
+Load	载入
+Browse	浏览
+Delete	删除
+Remove	移除
+Copy	复制
+Edit	编辑
+Search	搜索
+Add	添加
+Continue	继续
+Confirm	确认
+Forward	前进
+Go	跳转
+Sort	排序
+Sort by	排序方式
+Then by	其次按
+Ascending	升序
+Descending	降序
+Reverse	反向
+Preview	预览
+Font Chooser	字体选择器
+Change font	更改字体
+Bold	加粗
+Italic	斜体
+History	历史
+Index URL:	索引 URL：
+File URL:	文件 URL：
+Strand:	链：
+Chr:	染色体：
+Start:	起点：
+Clear All	全部清除
+Check All	全选
+Load from URL	从 URL 载入
+Unknown File Type	未知文件类型
+Creating index...	正在创建索引...
+Cancel load	取消载入
+Loading ...	正在加载...
+Opening session...	正在打开会话...
+Sequence not available	序列不可用
+Error loading track	载入轨道出错
+Error loading track data	载入轨道数据出错
+Only a single instance is allowed.	只允许运行一个实例。
+Drag and Drop	拖放
+Rename	重命名
+Select Files	选择文件
+Select Script	选择脚本
+Include	包含
+Match all of the following	匹配以下全部条件
+Match any of the following	匹配以下任一条件
+
+# ---- 图例 / 变异 ----
+Legends	图例
+HeatMap Preferences	热图首选项
+Minimum Color	最小颜色值
+Midpoint Color	中点颜色值
+Maximum Color	最大颜色值
+Reset to default	恢复默认
+Negative Range: 	负值范围：
+Positive Range: 	正值范围：
+Copy Number	拷贝数
+Heatmap	热图
+Sort By Depth	按深度排序
+Sort By Genotype	按基因型排序
+Sort By Quality	按质量排序
+Sort By Sample Name	按样本名排序
+Display Mode	显示模式
+Show Genotypes	显示基因型
+Hide Filtered Sites	隐藏被过滤位点
+Collapsed	折叠
+Expanded	展开
+Squished	压缩
+Load alignments	载入比对
+Remove Track	移除轨道
+Jump to chromosome: 	跳转到染色体：

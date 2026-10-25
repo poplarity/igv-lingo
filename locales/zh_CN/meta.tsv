@@ -1,0 +1,7 @@
+# 语言元信息（供脚本展示与发布打包使用）
+code	zh_CN
+name	Simplified Chinese
+native_name	简体中文
+maintainers	@wangyian
+igv_tested	2.19.1
+status	beta
