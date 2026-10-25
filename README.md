@@ -209,6 +209,17 @@ agent 是纯 Java，跨平台。`bin/igv-l10n` 是 bash 脚本，Windows 需用 
 **为什么不用 ResourceBundle？**
 IGV 没有。加 i18n 需要改 2333 处调用点，那是另一个量级的项目；这条路线可以作为上游 PR 慢慢推进。
 
+## 验证记录
+
+| 验证 | 结果 |
+|---|---|
+| 真机启动 IGV 2.19.1（`@~/.igv/java_arguments` 生产路径） | 菜单栏：文件 / 基因组 / 视图 / 轨道 / 区域 / 工具 / 帮助 |
+| 离线全量演练 | 110 个类、456 处替换，`结构校验通过` |
+| ASM 结构校验 | 每个改写后的 class 都能完整解析 |
+| 假 igv.jar 自检（`tests/run.sh`） | `File` 被翻译、`Regions` 保持原文 |
+| 审计可复现 | 两次 `audit` 输出逐字节相同 |
+| 安装 / 卸载 / 重装 | 沙箱 HOME 下全部通过，重复安装不产生重复行 |
+
 ## 参与
 
 见 [CONTRIBUTING.md](CONTRIBUTING.md)。翻译不需要懂 Java：改 TSV、跑 `check`、提 PR 即可。
