@@ -25,7 +25,8 @@ else
     ECJ="vendor/ecj-3.38.0.jar"
     if [[ ! -f "$ECJ" ]]; then
         echo "没有 javac，下载 ecj 编译器…"
-        curl -sL -o "$ECJ" https://repo1.maven.org/maven2/org/eclipse/jdt/ecj/3.38.0/ecj-3.38.0.jar
+        mkdir -p vendor
+        curl -fsSL --retry 3 -o "$ECJ" https://repo1.maven.org/maven2/org/eclipse/jdt/ecj/3.38.0/ecj-3.38.0.jar
     fi
     COMPILER="ecj"
     echo "编译器: ecj (无 JDK 模式)"

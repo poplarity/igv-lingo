@@ -9,6 +9,10 @@
 - 内置**字节码级安全审计**，自动避开会改坏 session 文件 / 偏好设置的字符串
 - 已经支持任意语言（`locales/<lang>/strings.tsv`），简体中文是第一个语言包
 
+![IGV 中文菜单栏](docs/screenshot-menubar.png)
+
+![IGV 命令栏](docs/screenshot-window.png)
+
 ```
 $ bin/igv-l10n setup zh_CN
 IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
@@ -30,7 +34,8 @@ IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
 | Sort By Depth | 按深度排序 |
 | Save PNG Screenshot ... | 保存 PNG 截图... |
 
-当前 zh_CN：**278 条词条，覆盖 102 个类、374 处界面字符串**；菜单栏 72%、轨道右键菜单 61%、面板 40%。
+当前 zh_CN：**360 条词条，覆盖 110 个类、456 处界面字符串**；菜单栏 72%、比对右键菜单 58%、
+文件/视图动作 52%、通用控件 46%、数据面板 40%。
 
 ## 快速开始
 

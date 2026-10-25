@@ -11,6 +11,8 @@ driven by a plain-text translation table.
   keys, regexes) untranslated, so sessions and settings keep working
 - Language-agnostic: `locales/<lang>/strings.tsv`; Simplified Chinese ships first
 
+![IGV menu bar in Chinese](docs/screenshot-menubar.png)
+
 ## Quick start
 
 Requires IGV 2.x installed and a JRE 17+ (IGV bundles one).

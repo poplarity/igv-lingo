@@ -294,3 +294,87 @@ Squished	压缩
 Load alignments	载入比对
 Remove Track	移除轨道
 Jump to chromosome: 	跳转到染色体：
+
+# ---- 第二批：右键菜单、消息与设置 ----
+Select by name...	按名称选择...
+Enter read name: 	输入读段名称：
+Enter tag	输入标签
+Link by tag...	按标签关联...
+Minimum mapping quality: 	最低比对质量：
+Small indel threshold: 	小 indel 阈值：
+Set insert size options ...	设置插入片段长度选项...
+Copy left-clipped sequence	复制左侧截断序列
+Copy right-clipped sequence	复制右侧截断序列
+BLAT read sequence	BLAT 读段序列
+Supplementary Reads Diagram	补充读段示意图
+View chimeric alignments in split screen	分屏查看嵌合比对
+Cluster alignments  *EXPERIMENTAL*	聚类比对（实验性）
+Enter the number of clusters	输入聚类数量
+Duplicates	重复读段
+3rd Gen	三代测序
+Experiment Type	实验类型
+Cannot export region more than 1 Megabase	无法导出超过 1 Mb 的区域
+Clusters size must be an integer	聚类大小必须是整数
+Mapping quality must be an integer	比对质量必须是整数
+Error setting small indel threshold - not an integer	设置小 indel 阈值出错：不是整数
+Alignment does not have mate, or it is not mapped.	该读段没有配对，或未比对到参考。
+Creating snapshot: 	正在生成快照：
+Finished creating snapshot: 	快照生成完成：
+Exporting image: 	正在导出图像：
+Error creating the image file: <br> 	生成图像文件出错：<br>
+Error loading : 	载入出错：
+Error loading session session: 	载入会话出错：
+Error opening preference dialog	打开首选项对话框出错
+Failure while resetting preferences!	重置首选项失败！
+Error autosaving session	自动保存会话出错
+Error closing session stream	关闭会话流出错
+Resetting Groups	正在重置分组
+Resetting Overlay Tracks	正在重置叠加轨道
+IGV - Session: 	IGV - 会话：
+Move	移动
+Could not create cursor: 	无法创建光标：
+ERROR:  output is not supported.  Try '.png' or '.svg'	错误：不支持输出到 ，请改用 '.png' 或 '.svg'
+ERROR: Unknown file extension 	错误：未知的文件扩展名 
+Cannot find feature or locus: 	找不到特征或位点：
+Connection time out	连接超时
+Could not load information from server	无法从服务器载入信息
+Enter URL to .genome or FASTA file	输入 .genome 或 FASTA 文件的 URL
+Enter GCA or GCF accession, or URL to hub.txt file	输入 GCA/GCF 编号，或 hub.txt 的 URL
+Error importing regions of interest	导入关注区域出错
+Error reloading tracks	重新载入轨道出错
+Functionality not implemented!	功能尚未实现！
+No annotation tracks available for current genome.	当前基因组没有可用的注释轨道。
+No attributes found to use in a filter	没有找到可用于筛选的属性
+The number of Index URLs must equal the number of File URLs	索引 URL 数量必须与文件 URL 数量相同
+This action will clear all regions of interest.  Continue?	此操作将清除全部关注区域，是否继续？
+FTP protocol is not supported	不支持 FTP 协议
+Search webservice error	搜索服务出错
+Invalid search string: 	无效的搜索字符串：
+Available Datasets	可用数据集
+Show tracks whose attribute	显示属性满足以下条件的轨道
+For attributes that:	对于属性：
+run batch script...	运行批处理脚本...
+Enter a gene or locus, e.f. EGFR,   chr1,   or chr1:100,000-200,000	输入基因或位点，例如 EGFR、chr1 或 chr1:100,000-200,000
+No image write for file type:  Try '.png' or '.svg'	不支持写入该文件类型：，请改用 '.png' 或 '.svg'
+Error writing image file of type: . Try .png or .svg	写入图像文件出错（类型 ），请改用 .png 或 .svg
+Cannot determine file type for 	无法确定  的文件类型
+Error downloading 	下载  出错
+Error downloading . Response code: 	下载  出错，响应码：
+Couldn't find file: 	找不到文件：
+Writing image to 	正在写入图像到 
+Do not show this message again.	不再显示此消息。
+Select IGV directory	选择 IGV 目录
+Select cache directory	选择缓存目录
+Move...	移动...
+Error loading provisioning URL	载入 provisioning URL 出错
+Enter new name: 	输入新名称：
+Reset panel to ''	将面板重置为“”
+Select Arc Color ()	选择弧线颜色（）
+Change Track Color (Negative Values or Strand)...	更改轨道颜色（负值或链）...
+Enter visibility window in kilo-bases.  To load all data enter zero.	输入可见窗口大小（kb）；输入 0 表示载入全部数据。
+Select Track Color (Negative Values)	选择轨道颜色（负值）
+  Arc colors (click to change)	  弧线颜色（点击更改）
+  Arc direction	  弧线方向
+  Type of Graph	  图形类型
+  Windowing Function	  窗口函数
+Group by strand	按链分组

@@ -49,9 +49,10 @@ ensure_deps() {
     for j in "${ASM_JARS[@]}"; do [[ -f "$j" ]] || missing=1; done
     if [[ $missing -eq 1 ]]; then
         echo "下载 ASM…"
-        curl -sL -o vendor/asm-9.7.1.jar        https://repo1.maven.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar
-        curl -sL -o vendor/asm-tree-9.7.1.jar   https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/9.7.1/asm-tree-9.7.1.jar
-        curl -sL -o vendor/asm-analysis-9.7.1.jar https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/9.7.1/asm-analysis-9.7.1.jar
+        mkdir -p vendor
+        curl -fsSL --retry 3 -o vendor/asm-9.7.1.jar https://repo1.maven.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar
+        curl -fsSL --retry 3 -o vendor/asm-tree-9.7.1.jar https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/9.7.1/asm-tree-9.7.1.jar
+        curl -fsSL --retry 3 -o vendor/asm-analysis-9.7.1.jar https://repo1.maven.org/maven2/org/ow2/asm/asm-analysis/9.7.1/asm-analysis-9.7.1.jar
     fi
 }
 
