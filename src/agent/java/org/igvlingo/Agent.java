@@ -69,6 +69,7 @@ public final class Agent {
         if (table.size() == 0) return;
 
         inst.addTransformer(new Localizer(table), false);
+        new UiSweep(table).start();
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
                 log("[igv-lingo] 结束：改写 " + CLASSES.get() + " 个类 / " + STRINGS.get() + " 处字符串")));
     }

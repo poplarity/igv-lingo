@@ -2,4 +2,4 @@ Manifest-Version: 1.0
 Premain-Class: org.igvlingo.Agent
 Can-Retransform-Classes: false
 Implementation-Title: igv-lingo agent
-Implementation-Version: 0.4.0
+Implementation-Version: 0.5.0

@@ -817,3 +817,176 @@ SAs for 	 的补充比对
 Enter multiple filter strings separated by spaces.	输入多个筛选字符串，用空格分隔。
 Error opening hyperlink	打开超链接出错
 When	条件
+
+# ---- 首选项对话框标签（来自 preferences.tab，运行时文本替换） ----
+Use relative paths in session files	在会话文件中使用相对路径
+Display annotation and data tracks in a single panel	将注释轨道和数据轨道显示在同一面板
+Show attribute panel	显示属性面板
+Show default track attributes	显示默认轨道属性
+Show region-of-interest boundaries	显示关注区域边界
+Enable Google access	启用 Google 访问
+"Search for feature" padding region in bp, < 0 is interpreted as a percentage.	“搜索特征”的扩展区域（bp），小于 0 时按百分比解释。
+Default visibility window (kilobases), < 0 disables visibility window.	默认可见窗口（kb），小于 0 表示禁用可见窗口。
+Automatically save session on exit	退出时自动保存会话
+Load last autosaved session on startup	启动时载入上次自动保存的会话
+How often, in minutes, to autosave the current session	自动保存当前会话的间隔（分钟）
+How many timed autosave session files to keep (0 disables timed autosave)	保留多少个定时自动保存的会话文件（0 表示禁用）
+Fit feature to window (with optional padding).	将特征适配到窗口（可选扩展区域）。
+Padding region in bp, < 0 is interpreted as a percentage.	扩展区域（bp），小于 0 时按百分比解释。
+Background color	背景色
+Default font family	默认字体
+Default font size	默认字号
+Scale fonts. Useful for some high-resolution screens.  ** REQUIRES RESTART **	缩放字体，适用于高分辨率屏幕。** 需要重启 **
+Font scale factor	字体缩放比例
+Enable anti-aliasing	启用抗锯齿
+Default numeric track height (pixels)	数值轨道默认高度（像素）
+Default feature track height (pixels)	特征轨道默认高度（像素）
+Sample attribute key for track names	用于轨道名称的样本属性键
+Expand feature tracks	展开特征轨道
+Normalize coverage data (.tdf files only)	归一化覆盖度数据（仅 .tdf 文件）
+ No data	 无数据
+ No call	 未检出
+Homozygous reference	纯合参考
+Homozygous variant	纯合变异
+Heterozygous variant	杂合变异
+No call	未检出
+Allele frequency - reference	等位基因频率 - 参考
+Allele frequency - variant	等位基因频率 - 变异
+Color by allele frequency (uncheck to color by allele fraction)	按等位基因频率着色（取消勾选则按等位基因比例）
+Splice Site	剪接位点
+Targeted Region	靶向区域
+Non-coding Transcript	非编码转录本
+Other AA Changing	其他氨基酸改变
+Other Likely Neutral	其他可能中性
+Unknown	未知
+Mut file coordinate convention. 0 = zero based half-open, 1 = one based fully closed.	mut 文件坐标约定。0 = 0 基半开区间，1 = 1 基全闭区间。
+Draw top border	绘制上边框
+Draw bottom border	绘制下边框
+Color borders	边框着色
+Draw track label	绘制轨道标签
+Label Y axis	标注 Y 轴
+Continuous autoscale	连续自动缩放
+Show data range	显示数据范围
+CN freq amplification threshold	拷贝数扩增频率阈值
+CN freq deletion threshold	拷贝数缺失频率阈值
+Show alignment track	显示比对轨道
+Show coverage track	显示覆盖度轨道
+Show junction track	显示连接点轨道
+Show insertion markers	显示插入标记
+Visibility range threshold (kb)	可见范围阈值（kb）
+Downsample reads	降采样读段
+Sampling window size (bases)	采样窗口大小（碱基）
+Number of reads per window	每个窗口的读段数
+Coverage allele-fraction threshold	覆盖度等位基因比例阈值
+Quality weight allele fraction	按质量加权等位基因比例
+Color by TAG	按 TAG 着色
+Group by TAG	按 TAG 分组
+Syncrohize alignment track grouping	同步比对轨道分组
+Mapping quality threshold	比对质量阈值
+Alignment score threshold (AS tag)	比对得分阈值（AS 标签）
+Alignment display mode	比对显示模式
+Display reads as paired by default	默认按配对显示读段
+Flag alignments with mapping quality = 0 with transparency and solid outline	将比对质量为 0 的比对标记为半透明加实线轮廓
+Mapping quality low shading threshold	比对质量低值着色阈值
+Mapping quality high shading threshold	比对质量高值着色阈值
+Filter duplicate reads	过滤重复读段
+Filter vendor failed reads	过滤厂商标记失败的读段
+Filter secondary alignments	过滤次要比对
+Filter supplementary alignments	过滤补充比对
+Flag unmapped pairs	标记未比对的配对
+Show center line	显示中心线
+Show soft-clipped bases	显示软剪切碱基
+Shade mismatched bases by quality.	按质量给错配碱基着色。
+Maximum transparency at base quality:	碱基质量达到此值时最透明：
+No transparency above base quality:	碱基质量高于此值时不透明：
+Label indels >  threshold	标记插入缺失 > 阈值
+Label threshold (bases)	标记阈值（碱基）
+Hide indels <  indel size threshold	隐藏插入缺失 < 阈值
+Indel size threshold (bases)	插入缺失大小阈值（碱基）
+Flag clipping > threshold	标记剪切 > 阈值
+Flag clipping threshold (bases)	剪切标记阈值（碱基）
+Show connected chromosome name	显示相连染色体名称
+Quick consensus mode	快速一致序列模式
+Hide tags in popup text (comma delimited list)	在弹窗中隐藏的标签（逗号分隔）
+Tags to be used for linking alignments (comma delimited list)	用于关联比对的标签（逗号分隔）
+Soft clip reference extension maximum	软剪切参考扩展上限
+Filter alignments by read group	按读段组过滤比对
+URL or path to read group filter file	读段组过滤文件的 URL 或路径
+Compute insert size thresholds	计算插入片段阈值
+Minimum (percentile)	最小值（百分位）
+Maximum (percentile)	最大值（百分位）
+Default minimum (bp)	默认最小值（bp）
+Default maximum (bp)	默认最大值（bp）
+INDEL coloring enabled (ultima)	启用 INDEL 着色（Ultima）
+INDEL coloring uses min quality (ultima)	INDEL 着色使用最低质量（Ultima）
+Show flanking regions	显示侧翼区域
+Minimum flanking width	最小侧翼宽度
+Minimum junction coverage	最小连接点覆盖度
+Label indels > label threshold	标记插入缺失 > 标记阈值
+Hide indels < show indel threshold	隐藏插入缺失 < 显示阈值
+Show indel threshold (bases)	显示插入缺失阈值（碱基）
+Flag clipping > flag clipping threshold	标记剪切 > 剪切阈值
+Link alignments by tag	按标签关联比对
+Linking tag	关联标签
+Show visibility options for SMRT kinetics data	显示 SMRT 动力学数据的可见性选项
+Base modification likelihood threshold (0-1)	碱基修饰似然阈值（0-1）
+Group alignments by strand	按链分组比对
+Assume skipped bases have low probability of modification.	假定跳过的碱基修饰概率很低。
+Other	其他
+Validate base count required by MM tag vs actual base count in read sequence	校验 MM 标签要求的碱基数与读段实际碱基数
+Disable check for system proxy	禁用系统代理检测
+Use proxy	使用代理
+Proxy host	代理主机
+Proxy port	代理端口
+Whitelist	白名单
+Proxy type	代理类型
+Authentication required	需要身份验证
+Username	用户名
+Password	密码
+Enable port	启用端口
+Port number	端口号
+Genome server URL	基因组服务器 URL
+Data registry URL	数据注册表 URL
+OAuth provisioning URL	OAuth 配置 URL
+Tooltip inital delay (ms)	提示延迟（毫秒）
+Tooltip reshow delay (ms)	提示重新显示延迟（毫秒）
+Tooltip dismiss delay (ms)	提示消失延迟（毫秒）
+Enable CircView	启用环形视图
+CircView host (usually localhost)	环形视图主机（通常是 localhost）
+CircView port	环形视图端口
+Linking ID	关联 ID
+General	常规
+Variants	变异
+Mutations	突变
+Charts	图表
+Alignments	比对
+Third Gen	三代测序
+Base Mods	碱基修饰
+Proxy	代理
+
+# ---- 首选项分组标题 ----
+Session Autosave	会话自动保存
+Jump To Next Feature Options (f/b Keys)	跳转到下一个特征的选项（f/b 键）
+Appearance	外观
+Nucleotide Colors	碱基配色
+Heatmaps	热图
+Variant Colors	变异配色
+Color Options	颜色选项
+Coordinate System	坐标系统
+Track Display	轨道显示
+Downsampling	降采样
+Coverage Track Options	覆盖度轨道选项
+Alignment Track Defaults	比对轨道默认设置
+Insert Size Options	插入片段选项
+Track Display Options	轨道显示选项
+Splice Junction Track	剪接连接点轨道
+Indels	插入缺失
+Clipping	剪切
+Linking	关联
+SMRT Kinetics	SMRT 动力学
+Modified base colors	修饰碱基配色
+Unomdified base colors (2-color option)	未修饰碱基配色（双色选项）
+Validation	校验
+Tooltip	提示
+JBrowse Circular View Integration  **EXPERIMENTAL FEATURE**	JBrowse 环形视图集成  **实验性功能**
+BLAT URL	BLAT 地址
