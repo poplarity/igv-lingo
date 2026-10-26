@@ -449,7 +449,6 @@ Status bar: 	状态栏：
 The first field	第一个字段
 The third field	第三个字段
 You chose 	你选择了 
-htsget URL	htsget URL
  minutes	 分钟
  < 1 minute	小于 1 分钟
 M of M	M / M
@@ -637,7 +636,6 @@ Expression	表达
 Limit fields must be numeric.	限制字段必须是数字。
 Loss	缺失
 Positive Range 	正值范围
-RNAi	RNAi
 Retained	保留
 Setting view properties...	正在设置视图属性...
 To:	到：

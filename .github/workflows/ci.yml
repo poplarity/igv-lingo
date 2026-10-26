@@ -41,7 +41,8 @@ jobs:
           java -version
           java -javaagent:build/j11/igv-lingo-agent.jar=build/j11 -version
           grep -q "语言 zh_CN" build/j11/igv-lingo.log
-          grep -q "词条 360" build/j11/igv-lingo.log
+          # 词条数会随翻译增长，只断言"加载到了一定规模"
+          grep -qE "词条 [0-9]{3,}" build/j11/igv-lingo.log
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v4
