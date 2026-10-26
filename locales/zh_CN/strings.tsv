@@ -482,3 +482,340 @@ Non-coding_Transcript	非编码转录本
 Other_AA_changing	其他改变氨基酸的变异
 Other_likely_neutral	其他可能中性的变异
 Truncating	截短
+
+# ---- 第四批：右键菜单、菜单栏、命令栏、错误弹窗 ----
+ - left clip	 - 左侧截断
+ - right clip	 - 右侧截断
+BLAT insert sequence	BLAT 插入序列
+BLAT left-clipped sequence	BLAT 左端截断序列
+BLAT right-clipped sequence	BLAT 右端截断序列
+Failed to handle SA tag:  due to 	处理 SA 标签失败：（原因：）
+Link by 	按  关联
+Link by tag:	按标签关联：
+Linked read view ()	关联读段视图（）
+NOMe-seq bisulfite mode	NOMe-seq 亚硫酸氢盐模式
+SMRT CCS fwd-strand aligned IPD	SMRT CCS 正链比对 IPD
+SMRT CCS fwd-strand aligned PW	SMRT CCS 正链比对 PW
+SMRT CCS rev-strand aligned IPD	SMRT CCS 负链比对 IPD
+SMRT CCS rev-strand aligned PW	SMRT CCS 负链比对 PW
+SMRT subread IPD	SMRT 子读段 IPD
+SMRT subread PW	SMRT 子读段 PW
+Unknown region bounds	区域边界未知
+Unknown region bounds, cannot export consensus	区域边界未知，无法导出一致序列
+aligned read length	比对读段长度
+base at :	: 处的碱基
+base modification ()	碱基修饰（）
+base modification (all)	碱基修饰（全部）
+base modification 2-color ()	碱基修饰双色（）
+base modification 2-color (all)	碱基修饰双色（全部）
+bisulfite mode	亚硫酸氢盐模式
+first-of-pair strand	配对首读段链
+insert size and pair orientation	插入片段长度与配对方向
+insert size	插入片段长度
+insertion at :	: 处的插入
+left clip	左侧截断
+read name	读段名称
+reverse sorting	反向排序
+right clip	右侧截断
+start location	起始位置
+Error creating exporting image 	生成导出图像出错
+Error setting bisulfite context for: 	设置亚硫酸氢盐上下文出错：
+BLAT sequences must be between 20 and 8000 bases in length.	BLAT 序列长度必须在 20 到 8000 个碱基之间。
+Could not reach genome server	无法连接基因组服务器
+Enter Project ID ...	输入项目 ID...
+Enter sequence to blat:	输入要 BLAT 的序列：
+Error creating google menu: 	创建 Google 菜单出错：
+Error creating google oauth provider	创建 Google OAuth 登录出错
+Error writing to file	写入文件出错
+Go to	跳转
+L&F	外观
+Login ... 	登录...
+Login	登录
+Logout 	退出登录
+Logout	退出登录
+Other (peaks, calls, ...)	其他（峰、调用结果等）
+Other - Signals	其他 - 信号
+goto chr1:-	跳转到 chr1:-
+  not found	未找到 
+<br><i>Connection time out	<br><i>连接超时
+Cannot create an XML Document from 	无法从  创建 XML 文档
+Encode data is not available for  through IGV.	无法通过 IGV 获取  的 ENCODE 数据。
+Error accessing 	访问  出错
+Error closing input stream	关闭输入流出错
+Error closing stream for: 	关闭  的流出错
+Error loading GenArk hub: 	载入 GenArk Hub 出错：
+Error loading tack hub	载入 Track Hub 出错
+Error loading url:  ()	载入 URL 出错：（）
+Error opening Encode browser	打开 ENCODE 浏览器出错
+Error parsing coordinate convention direction for file: 	解析文件  的坐标方向约定出错
+Failed to save session <br/>	保存会话失败<br/>
+IO Error: 	IO 错误：
+Invalid XML resource: 	无效的 XML 资源：
+No datasets are available for the current genome ().	当前基因组（）没有可用数据集。
+Parser configuration error for:	解析器配置错误：
+Please set database configuration in user preferences (View > Preferences)	请在首选项中设置数据库配置（视图 > 首选项）
+Range  is beyond the end of the chromosome	范围  超出染色体末端
+Saving session to 	正在将会话保存到 
+There was an error writing to ()	写入  时出错（）
+Unknow chromosome: 	未知染色体：
+Unrecognized hub identifier: 	无法识别的 Hub 标识：
+XML node  has no attributes	XML 节点  没有属性
+XML node  is missing a path attribute	XML 节点  缺少 path 属性
+Error backing up user-defined genome list file	备份用户自定义基因组列表文件出错
+Error closing genome zip stream	关闭基因组 zip 流出错
+Error deleting .genome file	删除 .genome 文件出错
+Error deleting genome files	删除基因组文件出错
+Error fetching genome list: 	获取基因组列表出错：
+Error parsing . "id" is required	解析  出错：缺少 "id"
+Error parsing . "name" is required	解析  出错：缺少 "name"
+Error parsing . One of either "fastaURL" or "twoBitURL" is required	解析  出错：需要 "fastaURL" 或 "twoBitURL" 之一
+Error parsing genome json: 	解析基因组 JSON 出错：
+Error reading genome list 	读取基因组列表出错
+Error rebuilding genome item map	重建基因组条目映射出错
+Error restoring genome-list file from backup	从备份恢复基因组列表文件出错
+Error updating user genome list line ''	更新用户基因组列表行出错：''
+Error updating user-defined genome list 	更新用户自定义基因组列表出错：
+Found invalid server genome list record: 	发现无效的服务器基因组列表记录：
+IO error unzipping cached genome.	解压缓存基因组时发生 IO 错误。
+Max exceeded	超出上限
+Unknown event class: 	未知事件类型：
+Zip error unzipping cached genome.	解压缓存基因组时发生 Zip 错误。
+
+# ---- 第五批：Sashimi、图例、变异、面板、基因列表 ----
+Select Alignment Tracks	选择比对轨道
+Select Gene Track	选择基因轨道
+ is not an integer	 不是整数
+Circle	圆形
+Ellipse	椭圆
+Text	文字
+Combine Strands	合并链
+Combine junctions from both strands -- best for non-strand preserving libraries.	合并双链的连接点——适用于非链特异性文库。
+Forward Strand	正链
+Reverse Strand	负链
+Junction Coverage Display	连接点覆盖度显示
+Junctions below this threshold will be removed from view	低于此阈值的连接点将不显示
+None	无
+Select Track Color	选择轨道颜色
+Set Color	设置颜色
+Set Exon Coverage Max	设置外显子覆盖度上限
+Set Junction Coverage Max	设置连接点覆盖度上限
+Set Junction Coverage Min	设置连接点覆盖度下限
+Set Max Junction Coverage	设置最大连接点覆盖度
+Set Minimum Junction Coverage	设置最小连接点覆盖度
+Show Exon Coverage Data	显示外显子覆盖度数据
+Show junction coverage as a circle	以圆形显示连接点覆盖度
+Show junction coverage as an ellipse	以椭圆显示连接点覆盖度
+Show junction coverage as text	以文字显示连接点覆盖度
+Show only junctions on the forward read strand  (of first-in-pair for paired reads)	仅显示正链上的连接点（双端测序取配对首读段）
+Show only junctions on the reverse read strand  (of first-in-pair for paired reads)	仅显示负链上的连接点（双端测序取配对首读段）
+The thickness of each line will be proportional to the coverage, up until this value	线条粗细与覆盖度成正比，直到达到该值
+ must be a number.	 必须是数字。
+ must be an integer number.	 必须是整数。
+Line Plot	折线图
+Points	散点
+Save Visible Data	保存可见数据
+%d reads written	已写入 %d 条读段
+Load Tracks	载入轨道
+List: 	列表：
+Set gene list	设置基因列表
+Error loading genome <br/>	载入基因组  出错<br/>
+Error setting apple dock icon	设置 Dock 图标出错
+Failure trying to get most recent autosave file	获取最新自动保存文件失败
+Failure trying to load most recent autosave file	载入最新自动保存文件失败
+Loading 	正在载入 
+Loading session data	正在载入会话数据
+ tracks loaded	已载入  条轨道
+Enter track name panel width: 	输入名称栏宽度：
+Error: value must be a positive integer.	错误：数值必须是正整数。
+Error opening igv-help uri	打开 IGV 帮助链接出错
+Enter dimensions, e.g. 800x400	输入尺寸，例如 800x400
+Login ...	登录...
+<html>The following urls could not be processed due to load failures:<br>	<html>以下 URL 因加载失败未能处理：<br>
+Color Mutations	给突变着色
+Conflict	冲突
+Expression	表达
+Limit fields must be numeric.	限制字段必须是数字。
+Loss	缺失
+Positive Range 	正值范围
+RNAi	RNAi
+Retained	保留
+Setting view properties...	正在设置视图属性...
+To:	到：
+Use Double Gradient	使用双渐变
+Add SVs to Circular View	将结构变异加入环形视图
+Allele Fraction	等位基因频率
+Change Squished Row Height...	更改压缩行高...
+Genotype	基因型
+Group By...	分组方式...
+Methylation Rate	甲基化率
+Set Feature Visibility Window...	设置特征可见窗口...
+Squished row height	压缩行高
+ ( tracks)	（ 条轨道）
+ is not a valid chromosome.	 不是有效的染色体。
+<html><br>Click to sort	<html><br>点击排序
+<html><br>To resize use ctrl-click-drag.	<html><br>按住 Ctrl 拖动可调整大小。
+<html>Click anywhere on the chromosome<br/>to center view at that location.	<html>点击染色体任意位置<br/>即可将该处居中。
+<html>The following loci could not be found in the currently loaded annotation sets: <br>	<html>以下位点在当前注释集中找不到：<br>
+Before	之前
+Error loading track hub: 	载入 Track Hub 出错：
+No chromosomes found for genome: 	基因组  未找到染色体
+Unexpected error repainting view.  See igv.log for details.	重绘视图时发生意外错误，详见 igv.log。
+<br><br>Note: igvtools can be used to sort the file, select "File > Run igvtools...".	<br><br>提示：可用 igvtools 对该文件排序，选择「文件 > 运行 igvtools...」。
+<html><i>Specify url to an index file. <b>Required for BAM and indexed files</b></i>	<html><i>指定索引文件的 URL。<b>BAM 和带索引的文件必填</b></i>
+<html>Files must be sorted by start position prior to indexing.<br>	<html>建索引前，文件必须先按起始位置排序。<br>
+<html>Load track from <br>path:  <br>index: </html>	<html>从以下路径载入轨道：<br>路径：<br>索引：</html>
+ERROR: 	错误：
+Error closing svg file	关闭 SVG 文件出错
+Error creating hyperlink for: 	为  创建超链接出错
+Error following hyperlink: 	打开超链接出错：
+Error launching from hyperlink	从超链接启动出错
+Error renaming download file 	重命名下载文件出错：
+Error exporting gene lists	导出基因列表出错
+Error exporting gene lists: 	导出基因列表出错：
+Error importing .gmt file: 	导入 .gmt 文件出错：
+Error updating genome property file	更新基因组属性文件出错
+Import GMT File	导入 GMT 文件
+Import a .gmt file, .grp, or .bed file	导入 .gmt、.grp 或 .bed 文件
+My lists	我的列表
+Save gene lists	保存基因列表
+
+# ---- 第六批：对话框、基因列表、颜色、变异提示 ----
+Data Range	数据范围
+Min, base, and max must be numeric values	最小值、基线和最大值必须是数字
+Mid	中点
+Compute thresholds	计算阈值
+Default maximum threshold: 	默认最大阈值：
+Default minimum threshold: 	默认最小阈值：
+Defaults	默认值
+Dynamic options	动态选项
+Error: Default maximum threshold must be a number between 0 and 100.	错误：默认最大阈值必须是 0 到 100 之间的数字。
+Error: Default maximum threshold must be an integer.	错误：默认最大阈值必须是整数。
+Error: Default minimum threshold must be a number between 0 and 100.	错误：默认最小阈值必须是 0 到 100 之间的数字。
+Error: Default minimum threshold must be an integer.	错误：默认最小阈值必须是整数。
+Maximum percentile:	最大百分位：
+Minimum percentile:	最小百分位：
+Absolute Max	绝对最大值
+Barchart	条形图
+Chart Colors	图表配色
+Configure Tracks	配置轨道
+Heatmap Colors	热图配色
+Scatterplot	散点图
+Track Height (Pixels) 	轨道高度（像素）
+Type of Graph	图表类型
+Use heatmap colors	使用热图配色
+Windowing Function	窗口函数
+BED format	BED 格式
+Description: 	描述：
+Error parsing bed data	解析 BED 数据出错
+Lists must contain at least 1 locus	列表中至少需要 1 个位点
+Name is required	名称不能为空
+Name: 	名称：
+Export	导出
+Import	导入
+First	第一个
+Last	最后一个
+Group	分组
+List	列表
+Loci	位点
+New	新建
+Could not find gene list resource: 	找不到基因列表资源：
+Error loading default gene lists	载入默认基因列表出错
+Error loading user gene lists: 	载入用户基因列表出错：
+Error saving gene list	保存基因列表出错
+Error writing gene list file:  	写入基因列表文件出错： 
+Nothing to export.	没有可导出的内容。
+Unrecognized file extension: 	无法识别的文件扩展名：
+<html>Error encountered loading gene lists ()<br/>See log for more details	<html>载入基因列表时出错（）<br/>详见日志
+<html>Error encountered loading user gene lists ()<br/>See log for more details	<html>载入用户基因列表时出错（）<br/>详见日志
+Change color	更改颜色
+Choose new color	选择新颜色
+De-saturate	降低饱和度
+Error loading color palletes	载入调色板出错
+Example	示例
+Select color	选择颜色
+Classify By:	按…分类：
+Set data type for X axis	设置 X 轴数据类型
+<br>Allele Count: 	<br>等位基因数：
+<br>Allele Counts: 	<br>等位基因数：
+<br>Allele Frequency: 	<br>等位基因频率：
+<br>Alternate Alleles: 	<br>替代等位基因：
+<br>Alternate: 	<br>替代：
+<br>Genotype: 	<br>基因型：
+<br>ID: <br>	<br>ID：<br>
+<br>Position: 	<br>位置：
+<br>Qual: 	<br>质量值：
+<br>Quality: 	<br>质量：
+<br>Reference: 	<br>参考：
+<br>Sample: 	<br>样本：
+<br>Total # Alleles: 	<br>等位基因总数：
+<br>Type: 	<br>类型：
+<br><b>Genotype Attributes</b>	<br><b>基因型属性</b>
+<br><b>Genotype Information</b>	<br><b>基因型信息</b>
+<br><br><b>Variant Attributes</b>	<br><br><b>变异属性</b>
+No Variants Found	未找到变异
+No structural variants found.	未找到结构变异。
+Allele Count	等位基因数
+Allele Frequency	等位基因频率
+Ancestral Allele	祖先等位基因
+Depth	深度
+Genotype Likelihoods	基因型似然值
+Genotype Quality	基因型质量
+Mapping Quality	比对质量
+Number of Samples with Data	有数据的样本数
+RMS Base Quality	碱基质量 RMS
+Strand Bias	链偏倚
+Total Alleles	等位基因总数
+Are you sure you want to load  bams?	确定要载入  个 BAM 文件吗？
+Error loading bam: 	载入 BAM 出错：
+<html>Error loading bam mapping file: <br>	<html>载入 BAM 映射文件出错：<br>
+File not found: 	文件不存在：
+You must log in to access this file	需要登录才能访问该文件
+Access forbidden	访问被拒绝
+Too many redirects	重定向次数过多
+Downloading 	正在下载 
+Error parsing URL 	解析 URL 出错：
+
+# ---- 第七批：对话框、向导、错误处理 ----
+ copy	 副本
+About...	关于...
+ Tracks By:	 轨道按：
+Unhandled exception	未处理的异常
+Detected an unsupported Java version.  Java 8 is not supported by this release.	检测到不支持的 Java 版本。本版本不再支持 Java 8。
+At least one centered feature does not have exon structure	至少有一个居中的特征没有外显子结构
+Error encountered reading features: 	读取特征时出错：
+Unrecognized sort option: 	无法识别的排序选项：
+Heatmap settings for selected tracks	选中轨道的热图设置
+Midrange	中间值
+Command  not found	未找到命令 
+Could not find readme file 	找不到 readme 文件 
+Error reading readme file 	读取 readme 文件出错 
+ index:	 索引：
+Category	类别
+Cell Type	细胞类型
+Chromatin Mark	染色质标记
+Input must be a directory: 	输入必须是目录：
+Resource Folder Selection	选择资源文件夹
+Failure while creating the resource tree dialog	创建资源树对话框失败
+Resource Tree	资源树
+Never Show Details	从不显示详情
+Show Details on Click	点击时显示详情
+Show Details on Hover	悬停时显示详情
+Error saving session 	保存会话出错
+Please enter all value before pressing ok.	请先填写所有值再点确定。
+<html>Select one or more imported genomes to remove.</html>	<html>选择一个或多个已导入的基因组进行移除。</html>
+Authentication Required	需要身份验证
+Pass:	密码：
+Please enter your username and password for:	请输入用户名和密码：
+User:	用户名：
+Error opening browser	打开浏览器出错
+Skip this update	跳过此更新
+All supported alignment files	所有支持的比对文件
+All supported coverage files	所有支持的覆盖度文件
+Error	错误
+Alignment Order	比对顺序
+Read Order	读段顺序
+Length in bases = 	长度（碱基）= 
+SAs for 	 的补充比对
+Enter multiple filter strings separated by spaces.	输入多个筛选字符串，用空格分隔。
+Error opening hyperlink	打开超链接出错
+When	条件
