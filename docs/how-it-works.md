@@ -139,8 +139,22 @@ Web 版（igv.js）同样没有 i18n，但它的字符串在打包后的 JS 里�
 而且它只是 IGV 的一个子集（没有 session、没有完整菜单）。本项目专注桌面版；
 如果以后要做 Web 版，工具链里 `Extract`/`Check` 的词表格式可以直接复用。
 
-## 7. 边界
+## 7. 数据驱动的界面：首选项
+
+首选项对话框的文字不在 class 常量里，而是读自 `igv.jar` 内的
+`org/broad/igv/prefs/preferences.tab`（一个 tab 分隔的资源文件，列是
+`key / label / type / default / tooltip`）。资源文件没法在 class 层面改，
+所以这里走另一条路：`UiSweep` 在窗口显示后遍历组件树，把文字、边框标题、
+标签页标题、tooltip 里和词表**完全一致**的条目替换掉。
+
+- 只替换完全匹配的整串文字，不做子串替换
+- 只动 `JLabel` / `AbstractButton` / `JTabbedPane` / `TitledBorder`
+- 菜单、对话框里的常量文字早已在加载时改过，这里不会二次处理
+- 可以用 `-Digv.lingo.uiSweep=false` 关掉
+
+## 8. 边界
 
 - 只处理 `org/broad/igv/**` 与 `org/igv/**`（后者是上游 main 分支的新包名）。
 - 不处理 IGV 通过 JIDE / Swing LAF 自带的文字（那些跟随系统语言，本来就已是中文）。
 - 词表按字面量精确匹配：IGV 改了文案，对应词条失效但不报错，`check --jar` 能发现。
+- 首选项的分组标题、选项标签是运行时替换的，如果 IGV 之后重写了组件文字，需要再扫一遍。
