@@ -1,5 +1,7 @@
 # igv-l10n · IGV 多语言汉化工具链
 
+[![ci](https://github.com/poplarity/igv-l10n/actions/workflows/ci.yml/badge.svg)](https://github.com/poplarity/igv-l10n/actions/workflows/ci.yml)
+
 给 **IGV Desktop**（Integrative Genomics Viewer）做界面汉化/多语言的开源工具链。
 不是"再 fork 一个 IGV"，而是：**一个 java agent + 一张词表 + 一套给译者用的工具**。
 
@@ -42,7 +44,7 @@ IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
 要求：macOS / Linux / Windows，已安装 IGV（任何 2.x 版本），有 JRE 17+（IGV 自带即可）。
 
 ```bash
-git clone https://github.com/<you>/igv-l10n.git
+git clone https://github.com/poplarity/igv-l10n.git
 cd igv-l10n
 bin/igv-l10n setup zh_CN      # 构建 + 审计 + 演练 + 安装
 ```
@@ -132,7 +134,7 @@ Load Genome from File...	ファイルからゲノムを読み込む...
 
 | 维度 | 支持范围 |
 |---|---|
-| IGV 版本 | **2.10.3 – 2.19.8 实测可用**（2.10.3 / 2.12.3 / 2.16.2 / 2.17.4 / 2.18.4 / 2.19.1 / 2.19.8） |
+| IGV 版本 | **2.10.3 – 2.19.8 实测可用**；仓库内附 2.19.1 / 2.19.8 / 2.18.4 的禁译规则 |
 | 操作系统 | macOS / Linux / Windows，同一个 `-javaagent` 入口 |
 | Java | agent 目标 Java 11（v55），11 / 17 / 21 均可加载 |
 

@@ -18,7 +18,7 @@ driven by a plain-text translation table.
 Requires IGV 2.x installed and a JRE 17+ (IGV bundles one).
 
 ```bash
-git clone https://github.com/<you>/igv-l10n.git
+git clone https://github.com/poplarity/igv-l10n.git
 cd igv-l10n
 bin/igv-l10n setup zh_CN     # build + audit + dry-run + install
 ```
