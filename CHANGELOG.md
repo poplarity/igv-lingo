@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.2.0 — 2026-10-26
+
+**改名**：`igv-l10n` → **`igv-lingo`**。
+
+`l10n` 是 localization 的“数字缩写”（l + 10 个字母 + n），跟 `i18n` 一样是开发者黑话，
+对做基因组学的用户几乎没有识别度。新名字取 "lingo"（语言/行话），好读好记，
+也和“给 IGV 换一种语言”这件事直接相关。
+
+- 仓库地址：`github.com/poplarity/igv-lingo`（旧地址自动跳转）
+- 命令：`bin/igv-lingo`
+- 安装目录：`~/.igv/lingo`
+- agent jar：`igv-lingo-agent.jar`
+- Java 包：`org.igvlingo`
+- 安装脚本会自动清掉 0.1.x 的旧加载行，无需手工处理
+
+词表格式、禁译规则、工具行为完全不变。
+
 ## 0.1.1 — 2026-10-26
 
 - 兼容性：agent 编译目标降到 **Java 11**（class v55），支持 IGV 2.16 及更早自带 JRE 11 的版本
@@ -20,6 +37,6 @@
   `check`（占位符/重复/失效词条）、`coverage`（覆盖率）、`dryrun`（离线演练 + 结构校验）
 - 简体中文词表：360 条，覆盖 110 个类、456 处界面字符串
 - IGV 2.19.1 禁译规则：1031 条（自动生成）
-- `bin/igv-l10n`：setup / install / uninstall / status / new / package / test
+- `bin/igv-lingo`：setup / install / uninstall / status / new / package / test
 - 发布包：独立 `install.sh`，解压即用
 - CI：构建 + 词表校验 + 假 igv.jar 自检

@@ -50,7 +50,7 @@ CONSTANT_Utf8 "Name"  ←  String 字面量 "Name"
                       ←  Fieldref   someClass.Name:Ljava/lang/String;
 ```
 
-改了它，反序列化、反射、JVM 链接都可能出问题。所以 igv-l10n 的做法是：
+改了它，反序列化、反射、JVM 链接都可能出问题。所以 igv-lingo 的做法是：
 
 1. **只动 `CONSTANT_String`**，从不修改已有 `CONSTANT_Utf8`；
 2. 把译文作为一个**新的 Utf8 项追加到常量池末尾**，把 `CONSTANT_String` 的索引改指过去：
@@ -83,7 +83,7 @@ String.format("Error loading %s", path)
 `StringsTable.specsMatch()` 在**载入词表时**逐条校验：`%` 说明符的多重集合 +
 `\u0001` 的数量必须与原文一致，不一致的条目**直接跳过并记入日志**，绝不让它进 IGV。
 
-`bin/igv-l10n check` 用同一个函数做 CI 门禁：不一致就是构建失败。
+`bin/igv-lingo check` 用同一个函数做 CI 门禁：不一致就是构建失败。
 
 ## 5. 最难的部分：一个字符串，两个身份
 

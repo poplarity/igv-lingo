@@ -1,4 +1,4 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ public final class Main {
             case "check" -> Check.run(rest);
             case "coverage" -> Coverage.run(rest);
             case "dryrun" -> DryRun.run(rest);
-            case "version" -> System.out.println("igv-l10n tools " + version());
+            case "version" -> System.out.println("igv-lingo tools " + version());
             default -> {
                 usage();
                 System.exit(2);
@@ -36,7 +36,7 @@ public final class Main {
 
     private static void usage() {
         System.out.println("""
-                igv-l10n 工具集
+                igv-lingo 工具集
 
                   extract  --jar igv.jar [--out candidates.tsv] [--skeleton locales/xx_YY]
                   audit    --jar igv.jar [--out igv/2.19.1]

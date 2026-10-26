@@ -5,7 +5,7 @@
 
 ## 三类字符串
 
-`bin/igv-l10n audit` 对每个字面量做数据流分析，结论只有三类。
+`bin/igv-lingo audit` 对每个字面量做数据流分析，结论只有三类。
 
 ### DISPLAY —— 放心翻
 
@@ -92,7 +92,7 @@ document.createElement("Regions");
 
 ## 怎么验证"没翻坏"
 
-1. `bin/igv-l10n dryrun <locale>`：全量改写一遍，最后一行必须是 `结构校验通过`；
+1. `bin/igv-lingo dryrun <locale>`：全量改写一遍，最后一行必须是 `结构校验通过`；
 2. 启动 IGV，打开一个旧 session（`File > Open Session`）；
 3. 改几个偏好设置，重启 IGV 看是否保留；
 4. 导出一次 session，确认 XML 里标签仍是英文：

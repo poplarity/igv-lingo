@@ -4,7 +4,7 @@
 
 ## 自检
 
-- [ ] `bin/igv-l10n check` 通过
+- [ ] `bin/igv-lingo check` 通过
 - [ ] 新增词条没有改动左侧英文原文（含末尾空格、`...`）
 - [ ] 占位符 `%s` / `%d` / `\u0001` 数量与原文一致
 - [ ] 新术语已加入 `locales/<lang>/glossary.tsv`

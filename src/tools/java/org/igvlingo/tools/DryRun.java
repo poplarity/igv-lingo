@@ -1,7 +1,7 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
-import org.igvl10n.ClassPatcher;
-import org.igvl10n.StringsTable;
+import org.igvlingo.ClassPatcher;
+import org.igvlingo.StringsTable;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;

@@ -18,11 +18,11 @@ jobs:
 
       - name: 构建
         run: |
-          bin/igv-l10n deps
-          bin/igv-l10n build
+          bin/igv-lingo deps
+          bin/igv-lingo build
 
       - name: 词表校验
-        run: bin/igv-l10n check
+        run: bin/igv-lingo check
 
       - name: 自检（假 igv.jar：audit -> dryrun -> 断言）
         run: tests/run.sh
@@ -36,15 +36,15 @@ jobs:
       - name: agent 在 Java 11 上加载
         run: |
           mkdir -p build/j11/locales/zh_CN
-          cp build/agent.jar build/j11/igv-l10n-agent.jar
+          cp build/agent.jar build/j11/igv-lingo-agent.jar
           cp locales/zh_CN/strings.tsv build/j11/locales/zh_CN/
           java -version
-          java -javaagent:build/j11/igv-l10n-agent.jar=build/j11 -version
-          grep -q "语言 zh_CN" build/j11/igv-l10n.log
-          grep -q "词条 360" build/j11/igv-l10n.log
+          java -javaagent:build/j11/igv-lingo-agent.jar=build/j11 -version
+          grep -q "语言 zh_CN" build/j11/igv-lingo.log
+          grep -q "词条 360" build/j11/igv-lingo.log
 
       - name: 上传构建产物
         uses: actions/upload-artifact@v4
         with:
-          name: igv-l10n-agent
+          name: igv-lingo-agent
           path: build/agent.jar

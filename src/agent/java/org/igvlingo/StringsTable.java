@@ -1,4 +1,4 @@
-package org.igvl10n;
+package org.igvlingo;
 
 import java.io.BufferedReader;
 import java.io.IOException;

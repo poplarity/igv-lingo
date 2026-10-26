@@ -1,7 +1,7 @@
 # IGV 简体中文词表（zh_CN）
 # 格式：英文原文 <TAB> 译文 [<TAB> 备注]；# 开头为注释。
 # 只翻纯展示文字；含 %s / %d / \u0001 的条目必须保留同样数量的占位符。
-# 校验：bin/igv-l10n check   覆盖率：bin/igv-l10n coverage zh_CN
+# 校验：bin/igv-lingo check   覆盖率：bin/igv-lingo coverage zh_CN
 
 # ---- 一级菜单 ----
 File	文件

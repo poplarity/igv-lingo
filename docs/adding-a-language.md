@@ -5,7 +5,7 @@
 ## 1. 生成骨架
 
 ```bash
-bin/igv-l10n new ja_JP
+bin/igv-lingo new ja_JP
 ```
 
 它会：
@@ -18,7 +18,7 @@ bin/igv-l10n new ja_JP
 如果 IGV 装在其他位置：
 
 ```bash
-IGV_JAR=/opt/igv/lib/igv.jar bin/igv-l10n new ja_JP
+IGV_JAR=/opt/igv/lib/igv.jar bin/igv-lingo new ja_JP
 ```
 
 ## 2. 填词表
@@ -42,7 +42,7 @@ Load Genome from File...	ファイルからゲノムを読み込む...
 ## 3. 校验
 
 ```bash
-bin/igv-l10n check
+bin/igv-lingo check
 ```
 
 会检查：
@@ -59,7 +59,7 @@ bin/igv-l10n check
 ## 4. 看覆盖率
 
 ```bash
-bin/igv-l10n coverage ja_JP
+bin/igv-lingo coverage ja_JP
 ```
 
 输出按区域的 候选/已译/覆盖率 表格，以及未翻译示例，方便决定下一步翻哪里。
@@ -67,25 +67,25 @@ bin/igv-l10n coverage ja_JP
 ## 5. 装到本机试用
 
 ```bash
-bin/igv-l10n setup ja_JP
+bin/igv-lingo setup ja_JP
 ```
 
 会依次：构建 agent → 对当前 igv.jar 跑审计（生成禁译规则）→ 离线演练 →
-装到 `~/.igv/l10n` → 往 `~/.igv/java_arguments` 加一行。
+装到 `~/.igv/lingo` → 往 `~/.igv/java_arguments` 加一行。
 
 重启 IGV。语言选择顺序：
 
-1. `-Digv.l10n.locale=ja_JP`（可写进 `java_arguments`）
+1. `-Digv.lingo.locale=ja_JP`（可写进 `java_arguments`）
 2. 系统语言（`ja_JP` → `ja` 回退）
 3. `locales/` 下第一个可用语言
 
-日志：`~/.igv/l10n/igv-l10n.log`。
+日志：`~/.igv/lingo/igv-lingo.log`。
 
 ## 6. 打发布包
 
 ```bash
-bin/igv-l10n package ja_JP
-# dist/igv-l10n-ja_JP-2.19.1.zip
+bin/igv-lingo package ja_JP
+# dist/igv-lingo-ja_JP-2.19.1.zip
 ```
 
 zip 里包含 agent、该语言词表、禁译规则和一个独立 `install.sh`，
@@ -99,7 +99,7 @@ git add locales/ja_JP
 git commit -m "i18n(ja_JP): 初始词表"
 ```
 
-PR 里附上 `bin/igv-l10n check` 的输出即可。
+PR 里附上 `bin/igv-lingo check` 的输出即可。
 
 ## 常见问题
 
@@ -112,5 +112,5 @@ PR 里附上 `bin/igv-l10n check` 的输出即可。
 把歧义条目写进 `glossary.tsv` 的备注列。
 
 **IGV 升级后词表会失效吗？**
-只有文案变了的条目会失效。`bin/igv-l10n check`（带 `--jar`）会列出
+只有文案变了的条目会失效。`bin/igv-lingo check`（带 `--jar`）会列出
 "本版 IGV 里已不存在"的条目；删掉或改写它们即可。

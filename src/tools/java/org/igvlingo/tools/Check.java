@@ -1,6 +1,6 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
-import org.igvl10n.StringsTable;
+import org.igvlingo.StringsTable;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

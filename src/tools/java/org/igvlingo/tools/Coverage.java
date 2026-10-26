@@ -1,4 +1,4 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

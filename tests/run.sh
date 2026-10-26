@@ -32,10 +32,10 @@ fi
 ( cd build/fixture/classes && zip -q -X -r ../igv-fixture.jar org )
 
 echo "== audit"
-bin/igv-l10n audit --jar build/fixture/igv-fixture.jar --out build/fixture/audit
+bin/igv-lingo audit --jar build/fixture/igv-fixture.jar --out build/fixture/audit
 
 echo "== dryrun"
-bin/igv-l10n dryrun --jar build/fixture/igv-fixture.jar --locale locales/zh_CN \
+bin/igv-lingo dryrun --jar build/fixture/igv-fixture.jar --locale locales/zh_CN \
     --deny build/fixture/audit/deny_by_class.tsv > build/fixture/dryrun.log 2>&1 || true
 cat build/fixture/dryrun.log
 

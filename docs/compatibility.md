@@ -31,9 +31,9 @@ jar 从 Broad 官方发布 zip 里取出）：
   因为 IGV 这几年加了不少新文案（GenArk、htsgt、SRA 等），老版本里没有这些字符串。
 - **失效词条**：词表里有、但这个版本的 igv.jar 里找不到的条目。2.12 有 28 条、
   2.10 有 40 条，都是新版本才有的功能文案。它们**不会报错**，只是不生效；
-  `bin/igv-l10n check --jar <该版本的 igv.jar>` 会把它们列出来。
+  `bin/igv-lingo check --jar <该版本的 igv.jar>` 会把它们列出来。
 - **结构校验**：每个改写后的 class 都被 ASM 重新解析过，全部 OK。
-- **禁译规则是每个版本单独生成的**：`bin/igv-l10n audit --jar <jar> --out igv/<version>`。
+- **禁译规则是每个版本单独生成的**：`bin/igv-lingo audit --jar <jar> --out igv/<version>`。
   不同版本的类结构和常量池不一样，不能混用规则文件。
   仓库里已经内置 2.19.1、2.19.8、2.18.4 三份（`igv/<version>/deny_by_class.tsv`），
   其他版本用上面那条命令生成一次即可。
@@ -74,7 +74,7 @@ jar 从 Broad 官方发布 zip 里取出）：
 所以安装方式在三个平台是**同一行**：
 
 ```
--javaagent:<安装目录>/igv-l10n-agent.jar=<安装目录>
+-javaagent:<安装目录>/igv-lingo-agent.jar=<安装目录>
 ```
 
 agent 本身是纯 Java：没有 JNI、没有平台相关代码，路径全部走 `java.nio.file.Path`，
@@ -86,11 +86,11 @@ Windows 用户名经常带空格（`C:\Users\John Doe\...`），而 JVM 的 `@ar
 `install` 写出的行是**带引号**的：
 
 ```
-"-javaagent:C:\Users\John Doe\.igv\l10n\igv-l10n-agent.jar=C:\Users\John Doe\.igv\l10n"
+"-javaagent:C:\Users\John Doe\.igv\lingo\igv-lingo-agent.jar=C:\Users\John Doe\.igv\lingo"
 ```
 
 实测：不加引号时 JVM 报 `Error opening zip file ... agent library failed`（IGV 起不来），
-加引号后正常加载。这一条已经写进 `bin/igv-l10n install` 和发布包的 `install.sh`。
+加引号后正常加载。这一条已经写进 `bin/igv-lingo install` 和发布包的 `install.sh`。
 
 ### 不生效的情况
 
@@ -114,9 +114,9 @@ agent 用到的 API 都在 Java 11 以内（`List.of` / `var` / `isBlank` / `Fil
 
 ```bash
 # 你的 IGV jar 属于哪一代
-bin/igv-l10n audit --jar /path/to/igv.jar --out igv/<version>
-bin/igv-l10n dryrun zh_CN --jar /path/to/igv.jar --deny igv/<version>/deny_by_class.tsv
-bin/igv-l10n check --jar /path/to/igv.jar --deny igv/<version>/deny_by_class.tsv
+bin/igv-lingo audit --jar /path/to/igv.jar --out igv/<version>
+bin/igv-lingo dryrun zh_CN --jar /path/to/igv.jar --deny igv/<version>/deny_by_class.tsv
+bin/igv-lingo check --jar /path/to/igv.jar --deny igv/<version>/deny_by_class.tsv
 ```
 
 三行分别回答：规则生成对不对、能翻多少、哪些词条在这个版本里失效。

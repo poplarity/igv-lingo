@@ -1,9 +1,11 @@
-# igv-l10n · IGV 多语言汉化工具链
+# igv-lingo · IGV 多语言汉化工具链
 
-[![ci](https://github.com/poplarity/igv-l10n/actions/workflows/ci.yml/badge.svg)](https://github.com/poplarity/igv-l10n/actions/workflows/ci.yml)
+[![ci](https://github.com/poplarity/igv-lingo/actions/workflows/ci.yml/badge.svg)](https://github.com/poplarity/igv-lingo/actions/workflows/ci.yml)
 
 给 **IGV Desktop**（Integrative Genomics Viewer）做界面汉化/多语言的开源工具链。
 不是"再 fork 一个 IGV"，而是：**一个 java agent + 一张词表 + 一套给译者用的工具**。
+
+> 原名 `igv-l10n`，0.2.0 起改名 **igv-lingo**（`l10n` 是 localization 的数字缩写，识别度太低）；旧仓库地址会自动跳转。
 
 - 不动 IGV 安装包，不破坏代码签名，不需要 sudo
 - 一条命令安装，删一行就关掉
@@ -16,13 +18,13 @@
 ![IGV 命令栏](docs/screenshot-window.png)
 
 ```
-$ bin/igv-l10n setup zh_CN
+$ bin/igv-lingo setup zh_CN
 IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
 版本:    2.19.1
 语言:    zh_CN
 == 审计（生成禁译规则）     禁译规则 1031 条
 == 演练                     命中 110 个类 / 456 处字符串，结构校验通过
-已安装到 ~/.igv/l10n，重启 IGV 生效
+已安装到 ~/.igv/lingo，重启 IGV 生效
 ```
 
 ## 效果
@@ -44,30 +46,30 @@ IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
 要求：macOS / Linux / Windows，已安装 IGV（任何 2.x 版本），有 JRE 17+（IGV 自带即可）。
 
 ```bash
-git clone https://github.com/poplarity/igv-l10n.git
-cd igv-l10n
-bin/igv-l10n setup zh_CN      # 构建 + 审计 + 演练 + 安装
+git clone https://github.com/poplarity/igv-lingo.git
+cd igv-lingo
+bin/igv-lingo setup zh_CN      # 构建 + 审计 + 演练 + 安装
 ```
 
 然后**退出并重启 IGV**。验证：
 
 ```bash
-bin/igv-l10n status
+bin/igv-lingo status
 # 加载行:   已启用
-# 最近日志: 01:57:42 [igv-l10n] org/broad/igv/ui/IGVMenuBar : 64 处
+# 最近日志: 01:57:42 [igv-lingo] org/broad/igv/ui/IGVMenuBar : 64 处
 ```
 
-卸载：`bin/igv-l10n uninstall`（只删加载行，文件保留）。
+卸载：`bin/igv-lingo uninstall`（只删加载行，文件保留）。
 
-不想克隆仓库？从 [Releases](https://github.com/poplarity/igv-l10n/releases/latest) 下载
-`igv-l10n-zh_CN-<igv版本>.zip`，解压后 `./install.sh` 即可（只需要 bash + java）。
+不想克隆仓库？从 [Releases](https://github.com/poplarity/igv-lingo/releases/latest) 下载
+`igv-lingo-zh_CN-<igv版本>.zip`，解压后 `./install.sh` 即可（只需要 bash + java）。
 
 ## 它是怎么工作的
 
 IGV 桌面版**没有 i18n 框架**：整个 `igv.jar` 里只有 2 个 `.properties`，源码里 `ResourceBundle` 出现 0 次，
 界面文字全是硬编码的 Java 字符串常量（实测 1589 个 class、5219 条字面量）。
 
-所以汉化只能"改程序"。igv-l10n 在**类加载时**改写 class 文件常量池：
+所以汉化只能"改程序"。igv-lingo 在**类加载时**改写 class 文件常量池：
 
 ```
 igv.jar 里的 class
@@ -92,7 +94,7 @@ JVM 看到的中文界面
 `"Regions"` 既是菜单名（该翻成"区域"），又是 session XML 的标签名（翻了旧会话就打不开）。
 `javac` 会把 `static final String` 内联到使用处，所以它在 class 里就是普通字面量，靠"只翻 ui 包"躲不掉。
 
-`bin/igv-l10n audit` 用 ASM 做数据流分析，把每个字符串字面量分成三类：
+`bin/igv-lingo audit` 用 ASM 做数据流分析，把每个字符串字面量分成三类：
 
 | 类别 | 例子 | 处理 |
 |---|---|---|
@@ -113,11 +115,11 @@ org/broad/igv/ui/IGVMenuBar              (无规则 -> 正常翻译)
 ## 给别人加语言
 
 ```bash
-bin/igv-l10n new ja_JP        # 从本机 igv.jar 生成 2393 行骨架，按区域分好组
+bin/igv-lingo new ja_JP        # 从本机 igv.jar 生成 2393 行骨架，按区域分好组
 # 编辑 locales/ja_JP/strings.tsv
-bin/igv-l10n check            # 校验占位符、重复键、失效词条
-bin/igv-l10n coverage ja_JP   # 看覆盖率
-bin/igv-l10n setup ja_JP      # 安装试用
+bin/igv-lingo check            # 校验占位符、重复键、失效词条
+bin/igv-lingo coverage ja_JP   # 看覆盖率
+bin/igv-lingo setup ja_JP      # 安装试用
 ```
 
 词表格式（TSV，Excel/Numbers 可直接编辑）：
@@ -152,26 +154,26 @@ Load Genome from File...	ファイルからゲノムを読み込む...
 | 2.10.3 | 951 | 416 | 通过 | 40 |
 
 词表按字面量匹配，老版本里没有的新文案会自动跳过（`check --jar` 会列出失效条目）。
-升级 IGV 后重跑 `bin/igv-l10n audit` + `check` 即可。细节见 [docs/compatibility.md](docs/compatibility.md)。
+升级 IGV 后重跑 `bin/igv-lingo audit` + `check` 即可。细节见 [docs/compatibility.md](docs/compatibility.md)。
 
 ## 命令一览
 
 | 命令 | 作用 |
 |---|---|
-| `bin/igv-l10n setup [locale]` | 构建 + 审计 + 演练 + 安装（默认 zh_CN） |
-| `bin/igv-l10n install/uninstall` | 只安装 / 只移除加载行 |
-| `bin/igv-l10n status` | 安装状态 + 最近日志 |
-| `bin/igv-l10n new <locale>` | 生成词表骨架 |
-| `bin/igv-l10n check` | 校验全部词表（CI 同款） |
-| `bin/igv-l10n coverage <locale>` | 覆盖率报告 |
-| `bin/igv-l10n dryrun <locale>` | 离线演练，不启动 IGV |
-| `bin/igv-l10n audit` | 对当前 igv.jar 重新生成禁译规则 |
-| `bin/igv-l10n extract` | 导出候选字符串 |
-| `bin/igv-l10n package <locale>` | 打发布 zip（含独立 installer） |
-| `bin/igv-l10n test` | 构建 + 校验 + 演练 |
-| `bin/igv-l10n build` | 只构建 |
+| `bin/igv-lingo setup [locale]` | 构建 + 审计 + 演练 + 安装（默认 zh_CN） |
+| `bin/igv-lingo install/uninstall` | 只安装 / 只移除加载行 |
+| `bin/igv-lingo status` | 安装状态 + 最近日志 |
+| `bin/igv-lingo new <locale>` | 生成词表骨架 |
+| `bin/igv-lingo check` | 校验全部词表（CI 同款） |
+| `bin/igv-lingo coverage <locale>` | 覆盖率报告 |
+| `bin/igv-lingo dryrun <locale>` | 离线演练，不启动 IGV |
+| `bin/igv-lingo audit` | 对当前 igv.jar 重新生成禁译规则 |
+| `bin/igv-lingo extract` | 导出候选字符串 |
+| `bin/igv-lingo package <locale>` | 打发布 zip（含独立 installer） |
+| `bin/igv-lingo test` | 构建 + 校验 + 演练 |
+| `bin/igv-lingo build` | 只构建 |
 
-环境变量：`JAVA`、`IGV_JAR`、`IGV_VERSION`、`IGV_L10N_HOME`、`IGV_JAVA_ARGS`。
+环境变量：`JAVA`、`IGV_JAR`、`IGV_VERSION`、`IGV_LINGO_HOME`、`IGV_JAVA_ARGS`。
 
 ## 安装原理（为什么不用改 app）
 
@@ -185,7 +187,7 @@ ps aux | grep igv
 这是官方留的用户级 JVM 参数入口。我们只往里加一行：
 
 ```
--javaagent:~/.igv/l10n/igv-l10n-agent.jar=~/.igv/l10n
+-javaagent:~/.igv/lingo/igv-lingo-agent.jar=~/.igv/lingo
 ```
 
 因此：不改 `/Applications`，不破坏签名，升级 IGV 不被覆盖，删掉这行就完全恢复。
@@ -194,9 +196,9 @@ Windows/Linux 同理（`%USERPROFILE%\.igv\java_arguments` / `~/.igv/java_argume
 ## 目录结构
 
 ```
-igv-l10n/
-├── bin/igv-l10n                 # 统一入口
-├── src/agent/java/org/igvl10n/  # 运行时 agent（零依赖）
+igv-lingo/
+├── bin/igv-lingo                 # 统一入口
+├── src/agent/java/org/igvlingo/  # 运行时 agent（零依赖）
 │   ├── Agent.java               # premain、语言选择、日志
 │   ├── ClassPatcher.java        # 常量池改写
 │   └── StringsTable.java        # 词表 + 禁译规则 + 占位符校验
@@ -221,15 +223,15 @@ igv-l10n/
 不会。这正是 `audit` 和 `deny_by_class.tsv` 存在的意义；`check` 和 CI 都会守住这条线。
 
 **IGV 升级后还能用吗？**
-能。先 `bin/igv-l10n audit` 重新生成规则，再 `bin/igv-l10n check` 看哪些词条失效，然后 `setup`。
+能。先 `bin/igv-lingo audit` 重新生成规则，再 `bin/igv-lingo check` 看哪些词条失效，然后 `setup`。
 
 **为什么有的地方还是英文？**
 两种原因：一是词表还没翻（看 `coverage`）；二是那条字符串被判定为结构 key（看 `igv/<version>/deny_by_class.tsv`），翻了会出问题。
 
 **Windows 上能用吗？**
-agent 是纯 Java，跨平台。`bin/igv-l10n` 是 bash 脚本，Windows 需用 Git Bash 或 WSL 运行；
-也可以直接用发布包里的 `install.sh`（同样需要 bash），或手工把 `igv-l10n-agent.jar`、
-`locales/`、`deny_by_class.tsv` 放到 `%USERPROFILE%\.igv\l10n\`，再往
+agent 是纯 Java，跨平台。`bin/igv-lingo` 是 bash 脚本，Windows 需用 Git Bash 或 WSL 运行；
+也可以直接用发布包里的 `install.sh`（同样需要 bash），或手工把 `igv-lingo-agent.jar`、
+`locales/`、`deny_by_class.tsv` 放到 `%USERPROFILE%\.igv\lingo\`，再往
 `%USERPROFILE%\.igv\java_arguments` 加同一行 `-javaagent`。
 
 **为什么不用 ResourceBundle？**

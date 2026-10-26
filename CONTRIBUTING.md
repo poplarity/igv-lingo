@@ -5,10 +5,10 @@
 ## 翻译
 
 ```bash
-git clone https://github.com/<you>/igv-l10n.git
-cd igv-l10n
-bin/igv-l10n check                     # 先确认现状
-bin/igv-l10n coverage zh_CN            # 看哪些区域还没翻
+git clone https://github.com/<you>/igv-lingo.git
+cd igv-lingo
+bin/igv-lingo check                     # 先确认现状
+bin/igv-lingo coverage zh_CN            # 看哪些区域还没翻
 ```
 
 编辑 `locales/zh_CN/strings.tsv`：
@@ -31,8 +31,8 @@ Load Genome from File...	从文件载入基因组...
 提交前：
 
 ```bash
-bin/igv-l10n check          # 必须通过
-bin/igv-l10n dryrun zh_CN   # 可选：看命中数量和结构校验
+bin/igv-lingo check          # 必须通过
+bin/igv-lingo dryrun zh_CN   # 可选：看命中数量和结构校验
 ```
 
 PR 标题建议：`i18n(zh_CN): 翻译轨道右键菜单`。
@@ -40,18 +40,18 @@ PR 标题建议：`i18n(zh_CN): 翻译轨道右键菜单`。
 ## 新增语言
 
 ```bash
-bin/igv-l10n new ja_JP
+bin/igv-lingo new ja_JP
 ```
 
 会生成 `locales/ja_JP/strings.tsv` 骨架（约 2400 行，按区域分组）和
-`locales/ja_JP/meta.tsv`。填完跑 `bin/igv-l10n check` 和 `bin/igv-l10n setup ja_JP` 验证，
+`locales/ja_JP/meta.tsv`。填完跑 `bin/igv-lingo check` 和 `bin/igv-lingo setup ja_JP` 验证，
 再提 PR。新语言不需要改任何 Java 代码。
 
 ## 改代码
 
 ```bash
-bin/igv-l10n build
-bin/igv-l10n test
+bin/igv-lingo build
+bin/igv-lingo test
 ```
 
 - `src/agent/` 必须保持**零依赖**（只能用 JDK 自带类），因为它要在 IGV 的 JVM 里运行。
@@ -63,8 +63,8 @@ bin/igv-l10n test
 ## 支持新的 IGV 版本
 
 ```bash
-bin/igv-l10n audit --jar /path/to/igv.jar     # 生成 igv/<version>/deny_by_class.tsv
-bin/igv-l10n check                            # 看哪些词条在新版里失效
+bin/igv-lingo audit --jar /path/to/igv.jar     # 生成 igv/<version>/deny_by_class.tsv
+bin/igv-lingo check                            # 看哪些词条在新版里失效
 ```
 
 把新的 `igv/<version>/` 一起提交。

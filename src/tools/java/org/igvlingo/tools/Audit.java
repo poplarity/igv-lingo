@@ -1,4 +1,4 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.Opcodes;
@@ -177,7 +177,7 @@ public final class Audit {
 
         Files.createDirectories(out);
         List<String> denyLines = new ArrayList<>();
-        denyLines.add("# 由 igv-l10n audit 自动生成，请勿手改");
+        denyLines.add("# 由 igv-lingo audit 自动生成，请勿手改");
         denyLines.add("class\tliteral");
         denyLines.addAll(deny);
         Files.write(out.resolve("deny_by_class.tsv"), denyLines, StandardCharsets.UTF_8);

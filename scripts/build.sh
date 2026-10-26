@@ -33,10 +33,10 @@ else
 fi
 
 for j in "${ASM_JARS[@]}"; do
-    [[ -f "$j" ]] || { echo "缺少依赖 ${j}，先运行 bin/igv-l10n deps" >&2; exit 1; }
+    [[ -f "$j" ]] || { echo "缺少依赖 ${j}，先运行 bin/igv-lingo deps" >&2; exit 1; }
 done
 
-rm -rf build/agent build/tools build/agent.jar build/tools.jar
+rm -rf build/agent build/tools build/stage-agent build/agent.jar build/tools.jar
 mkdir -p build/agent/classes build/tools/classes build/stage-agent/META-INF
 
 # $1=outdir $2=classpath $3=release $4...=sources

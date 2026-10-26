@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# igv-l10n —— IGV 多语言汉化工具链
+# igv-lingo —— IGV 多语言汉化工具链
 #
-#   bin/igv-l10n setup zh_CN      一条命令完成：构建 + 审计 + 安装
-#   bin/igv-l10n new ja_JP        为日语生成词表骨架
-#   bin/igv-l10n check            校验词表（CI 同款）
-#   bin/igv-l10n coverage zh_CN   看翻译覆盖率
+#   bin/igv-lingo setup zh_CN      一条命令完成：构建 + 审计 + 安装
+#   bin/igv-lingo new ja_JP        为日语生成词表骨架
+#   bin/igv-lingo check            校验词表（CI 同款）
+#   bin/igv-lingo coverage zh_CN   看翻译覆盖率
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -12,7 +12,7 @@ cd "$ROOT"
 
 ASM_JARS=("vendor/asm-9.7.1.jar" "vendor/asm-tree-9.7.1.jar" "vendor/asm-analysis-9.7.1.jar")
 ASM_CP="$(IFS=:; echo "${ASM_JARS[*]}")"
-L10N_HOME="${IGV_L10N_HOME:-$HOME/.igv/l10n}"
+LINGO_HOME="${IGV_LINGO_HOME:-$HOME/.igv/lingo}"
 JAVA_ARGS_FILE="${IGV_JAVA_ARGS:-$HOME/.igv/java_arguments}"
 
 detect_java() {
@@ -65,7 +65,7 @@ ensure_built() {
 
 tool() {
     ensure_built
-    "$JAVA" -cp "build/agent.jar:build/tools/classes:$ASM_CP" org.igvl10n.tools.Main "$@"
+    "$JAVA" -cp "build/agent.jar:build/tools/classes:$ASM_CP" org.igvlingo.tools.Main "$@"
 }
 
 cmd_deps() {
@@ -145,7 +145,7 @@ cmd_coverage() {
             *) locale="$1"; shift ;;
         esac
     done
-    [[ -n "$locale" ]] || { echo "用法: igv-l10n coverage <locale>" >&2; exit 2; }
+    [[ -n "$locale" ]] || { echo "用法: igv-lingo coverage <locale>" >&2; exit 2; }
     [[ -n "$jar" ]] || { echo "找不到 igv.jar，设置 IGV_JAR 或 --jar" >&2; exit 1; }
     locale="$(normalize_locale "$locale")"
     tool coverage --jar "$jar" --locale "locales/$locale" ${rest[@]+"${rest[@]}"}
@@ -163,7 +163,7 @@ cmd_dryrun() {
             *) locale="$1"; shift ;;
         esac
     done
-    [[ -n "$locale" ]] || { echo "用法: igv-l10n dryrun <locale>" >&2; exit 2; }
+    [[ -n "$locale" ]] || { echo "用法: igv-lingo dryrun <locale>" >&2; exit 2; }
     [[ -n "$jar" ]] || { echo "找不到 igv.jar" >&2; exit 1; }
     [[ -n "$deny" ]] || deny="igv/$(detect_version)/deny_by_class.tsv"
     locale="$(normalize_locale "$locale")"
@@ -171,14 +171,14 @@ cmd_dryrun() {
 }
 
 cmd_new() {
-    local locale="${1:?用法: igv-l10n new ja_JP}"
+    local locale="${1:?用法: igv-lingo new ja_JP}"
     local jar; jar="$(detect_jar)"
     [[ -n "$jar" ]] || { echo "找不到 igv.jar" >&2; exit 1; }
     tool extract --jar "$jar" --out "out/candidates.tsv" --skeleton "locales/$locale"
     echo
     echo "下一步：编辑 locales/$locale/strings.tsv，然后"
-    echo "  bin/igv-l10n check      # 校验"
-    echo "  bin/igv-l10n setup $locale"
+    echo "  bin/igv-lingo check      # 校验"
+    echo "  bin/igv-lingo setup $locale"
 }
 
 cmd_setup() {
@@ -213,41 +213,42 @@ cmd_install() {
     [[ -f build/agent.jar ]] || ensure_built
     [[ -f "locales/$locale/strings.tsv" ]] || { echo "没有词表 locales/$locale" >&2; exit 1; }
     [[ -f "igv/$ver/deny_by_class.tsv" ]] || {
-        echo "没有 igv/$ver/deny_by_class.tsv，先跑 bin/igv-l10n audit" >&2; exit 1; }
+        echo "没有 igv/$ver/deny_by_class.tsv，先跑 bin/igv-lingo audit" >&2; exit 1; }
 
-    mkdir -p "$L10N_HOME/locales"
-    cp build/agent.jar "$L10N_HOME/igv-l10n-agent.jar"
-    cp "igv/$ver/deny_by_class.tsv" "$L10N_HOME/deny_by_class.tsv"
-    rm -rf "$L10N_HOME/locales/$locale"
-    mkdir -p "$L10N_HOME/locales/$locale"
-    cp "locales/$locale/strings.tsv" "$L10N_HOME/locales/$locale/strings.tsv"
+    mkdir -p "$LINGO_HOME/locales"
+    cp build/agent.jar "$LINGO_HOME/igv-lingo-agent.jar"
+    cp "igv/$ver/deny_by_class.tsv" "$LINGO_HOME/deny_by_class.tsv"
+    rm -rf "$LINGO_HOME/locales/$locale"
+    mkdir -p "$LINGO_HOME/locales/$locale"
+    cp "locales/$locale/strings.tsv" "$LINGO_HOME/locales/$locale/strings.tsv"
 
     mkdir -p "$(dirname "$JAVA_ARGS_FILE")"
     [[ -f "$JAVA_ARGS_FILE" ]] && cp "$JAVA_ARGS_FILE" "$JAVA_ARGS_FILE.bak.$(date +%Y%m%d-%H%M%S)"
     touch "$JAVA_ARGS_FILE"
-    grep -v "igv-l10n-agent.jar" "$JAVA_ARGS_FILE" > "$JAVA_ARGS_FILE.tmp" 2>/dev/null || true
+    # 顺带清掉 0.1.x 旧名（igv-l10n）写过的加载行
+    grep -v -E "igv-(lingo|l10n)-agent\.jar|^# IGV 多语言（igv-(lingo|l10n)）" "$JAVA_ARGS_FILE" > "$JAVA_ARGS_FILE.tmp" 2>/dev/null || true
     mv "$JAVA_ARGS_FILE.tmp" "$JAVA_ARGS_FILE"
     {
         echo ""
-        echo "# IGV 多语言（igv-l10n）：删掉这一行即可关闭"
-        echo "\"-javaagent:${L10N_HOME}/igv-l10n-agent.jar=${L10N_HOME}\""
+        echo "# IGV 多语言（igv-lingo）：删掉这一行即可关闭"
+        echo "\"-javaagent:${LINGO_HOME}/igv-lingo-agent.jar=${LINGO_HOME}\""
     } >> "$JAVA_ARGS_FILE"
 
     echo
-    echo "已安装到 $L10N_HOME"
+    echo "已安装到 $LINGO_HOME"
     echo "已写入 $JAVA_ARGS_FILE"
-    echo "重启 IGV 生效；日志：$L10N_HOME/igv-l10n.log"
+    echo "重启 IGV 生效；日志：$LINGO_HOME/igv-lingo.log"
 }
 
 cmd_uninstall() {
     if [[ -f "$JAVA_ARGS_FILE" ]]; then
         cp "$JAVA_ARGS_FILE" "$JAVA_ARGS_FILE.bak.$(date +%Y%m%d-%H%M%S)"
-        grep -v "igv-l10n-agent.jar" "$JAVA_ARGS_FILE" > "$JAVA_ARGS_FILE.tmp" || true
+        grep -v -E "igv-(lingo|l10n)-agent\.jar|^# IGV 多语言（igv-(lingo|l10n)）" "$JAVA_ARGS_FILE" > "$JAVA_ARGS_FILE.tmp" || true
         mv "$JAVA_ARGS_FILE.tmp" "$JAVA_ARGS_FILE"
         echo "已移除加载行：$JAVA_ARGS_FILE"
     fi
-    echo "文件仍在 ${L10N_HOME}"
-echo "彻底删除：rm -rf \"${L10N_HOME}\""
+    echo "文件仍在 ${LINGO_HOME}"
+echo "彻底删除：rm -rf \"${LINGO_HOME}\""
 }
 
 cmd_status() {
@@ -255,36 +256,36 @@ cmd_status() {
     echo "语言包:   $(ls locales 2>/dev/null | tr '\n' ' ')"
     echo "IGV jar:  $(detect_jar || true)"
     echo "IGV 版本: $(detect_version)"
-    echo "安装目录: $L10N_HOME $([[ -d $L10N_HOME ]] && echo '(存在)' || echo '(未安装)')"
-    if [[ -f "$JAVA_ARGS_FILE" ]] && grep -q "igv-l10n-agent.jar" "$JAVA_ARGS_FILE"; then
+    echo "安装目录: $LINGO_HOME $([[ -d $LINGO_HOME ]] && echo '(存在)' || echo '(未安装)')"
+    if [[ -f "$JAVA_ARGS_FILE" ]] && grep -q "igv-lingo-agent.jar" "$JAVA_ARGS_FILE"; then
         echo "加载行:   已启用"
     else
         echo "加载行:   未启用"
     fi
-    if [[ -f "$L10N_HOME/igv-l10n.log" ]]; then
+    if [[ -f "$LINGO_HOME/igv-lingo.log" ]]; then
         echo "最近日志:"
-        tail -5 "$L10N_HOME/igv-l10n.log" | sed 's/^/  /'
+        tail -5 "$LINGO_HOME/igv-lingo.log" | sed 's/^/  /'
     fi
 }
 
 cmd_package() {
-    local locale="${1:?用法: igv-l10n package zh_CN}"
+    local locale="${1:?用法: igv-lingo package zh_CN}"
     local ver; ver="$(detect_version)"
     [[ -f "igv/$ver/deny_by_class.tsv" ]] || { echo "先跑 audit" >&2; exit 1; }
     [[ -f build/agent.jar ]] || ensure_built
 
-    local stage="build/pkg/igv-l10n-$locale-$ver"
+    local stage="build/pkg/igv-lingo-$locale-$ver"
     rm -rf build/pkg
     mkdir -p "$stage/locales/$locale"
-    cp build/agent.jar "$stage/igv-l10n-agent.jar"
+    cp build/agent.jar "$stage/igv-lingo-agent.jar"
     cp "igv/$ver/deny_by_class.tsv" "$stage/deny_by_class.tsv"
     cp "locales/$locale/strings.tsv" "$stage/locales/$locale/strings.tsv"
     cp scripts/package-install.sh "$stage/install.sh"
     chmod +x "$stage/install.sh"
 
     mkdir -p dist
-    ( cd build/pkg && zip -q -X -r "$ROOT/dist/igv-l10n-$locale-$ver.zip" "igv-l10n-$locale-$ver" )
-    echo "打包: dist/igv-l10n-$locale-$ver.zip"
+    ( cd build/pkg && zip -q -X -r "$ROOT/dist/igv-lingo-$locale-$ver.zip" "igv-lingo-$locale-$ver" )
+    echo "打包: dist/igv-lingo-$locale-$ver.zip"
 }
 
 cmd_test() {
@@ -305,7 +306,7 @@ cmd_test() {
 
 usage() {
     cat <<'EOF'
-igv-l10n —— IGV 多语言汉化工具链
+igv-lingo —— IGV 多语言汉化工具链
 
   build                    编译 agent 与工具
   deps                     下载构建依赖
@@ -322,7 +323,7 @@ igv-l10n —— IGV 多语言汉化工具链
   package <locale>         打发布 zip
   test                     构建 + 校验 + 演练
 
-环境变量：JAVA、IGV_JAR、IGV_VERSION、IGV_L10N_HOME、IGV_JAVA_ARGS
+环境变量：JAVA、IGV_JAR、IGV_VERSION、IGV_LINGO_HOME、IGV_JAVA_ARGS
 EOF
 }
 

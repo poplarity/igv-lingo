@@ -1,4 +1,4 @@
-# 由 igv-l10n audit 自动生成，请勿手改
+# 由 igv-lingo audit 自动生成，请勿手改
 class	literal
 org/broad/igv/ui/ResourceTree	#text
 org/broad/igv/sam/ClippingCounts	(([0-9]+)S)?(([0-9]+)H)?$

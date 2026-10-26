@@ -1,4 +1,4 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -91,7 +91,7 @@ public final class Extract {
                 lines.add("# " + skeleton.getFileName() + " 词表");
                 lines.add("# 格式：英文原文 <TAB> 译文 [<TAB> 备注]；# 开头为注释。");
                 lines.add("# 只翻“纯展示”文字；含 %s/%d 的条目必须保留占位符。");
-                lines.add("# 校验：bin/igv-l10n check " + skeleton.getFileName());
+                lines.add("# 校验：bin/igv-lingo check " + skeleton.getFileName());
                 lines.add("");
                 Map<String, List<String>> byArea = new TreeMap<>();
                 for (String s : count.keySet()) {

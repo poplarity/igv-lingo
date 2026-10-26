@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Premain-Class: org.igvl10n.Agent
+Premain-Class: org.igvlingo.Agent
 Can-Retransform-Classes: false
-Implementation-Title: igv-l10n agent
-Implementation-Version: 0.1.0
+Implementation-Title: igv-lingo agent
+Implementation-Version: 0.2.0

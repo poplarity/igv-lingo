@@ -1,4 +1,4 @@
-package org.igvl10n;
+package org.igvlingo;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

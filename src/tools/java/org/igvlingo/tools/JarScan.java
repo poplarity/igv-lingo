@@ -1,4 +1,4 @@
-package org.igvl10n.tools;
+package org.igvlingo.tools;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
