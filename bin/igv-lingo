@@ -269,23 +269,33 @@ cmd_status() {
 }
 
 cmd_package() {
-    local locale="${1:?用法: igv-lingo package zh_CN}"
+    local locale; locale="$(normalize_locale "${1:?用法: igv-lingo package <locale>}")"
     local ver; ver="$(detect_version)"
-    [[ -f "igv/$ver/deny_by_class.tsv" ]] || { echo "先跑 audit" >&2; exit 1; }
+    [[ -f "igv/$ver/deny_by_class.tsv" ]] || { echo "先跑 audit（缺 igv/$ver/deny_by_class.tsv）" >&2; exit 1; }
     [[ -f build/agent.jar ]] || ensure_built
 
-    local stage="build/pkg/igv-lingo-$locale-$ver"
+    local name="igv-lingo-$locale-$ver"
+    local stage="build/pkg/$name"
     rm -rf build/pkg
     mkdir -p "$stage/locales/$locale"
+
     cp build/agent.jar "$stage/igv-lingo-agent.jar"
     cp "igv/$ver/deny_by_class.tsv" "$stage/deny_by_class.tsv"
     cp "locales/$locale/strings.tsv" "$stage/locales/$locale/strings.tsv"
-    cp scripts/package-install.sh "$stage/install.sh"
-    chmod +x "$stage/install.sh"
+
+    # 双击安装：Mac / Windows
+    cp scripts/install.sh scripts/uninstall.sh "$stage/"
+    cp scripts/install-mac.command scripts/uninstall-mac.command "$stage/"
+    cp scripts/install-windows.bat scripts/install-windows.ps1 "$stage/"
+    cp scripts/uninstall-windows.bat scripts/uninstall-windows.ps1 "$stage/"
+    cp scripts/install-readme.txt "$stage/使用说明.txt"
+    cp scripts/install-readme.txt "$stage/README.txt"   # 同内容，纯 ASCII 文件名兜底
+    chmod +x "$stage/install.sh" "$stage/uninstall.sh" \
+             "$stage/install-mac.command" "$stage/uninstall-mac.command"
 
     mkdir -p dist
-    ( cd build/pkg && zip -q -X -r "$ROOT/dist/igv-lingo-$locale-$ver.zip" "igv-lingo-$locale-$ver" )
-    echo "打包: dist/igv-lingo-$locale-$ver.zip"
+    ( cd build/pkg && zip -q -X -r "$ROOT/dist/$name.zip" "$name" )
+    echo "打包: dist/$name.zip"
 }
 
 cmd_test() {

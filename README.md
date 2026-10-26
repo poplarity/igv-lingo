@@ -1,31 +1,46 @@
-# igv-lingo · IGV 多语言汉化工具链
+# IGV Lingo
+
+**简体中文** · [English](README.en.md)
 
 [![ci](https://github.com/poplarity/igv-lingo/actions/workflows/ci.yml/badge.svg)](https://github.com/poplarity/igv-lingo/actions/workflows/ci.yml)
+[![release](https://img.shields.io/github/v/release/poplarity/igv-lingo?color=blue)](https://github.com/poplarity/igv-lingo/releases/latest)
+[![license](https://img.shields.io/github/license/poplarity/igv-lingo)](LICENSE)
+![IGV](https://img.shields.io/badge/IGV-2.10%E2%80%932.19-2ea44f)
+![Java](https://img.shields.io/badge/Java-11%2B-orange)
 
-给 **IGV Desktop**（Integrative Genomics Viewer）做界面汉化/多语言的开源工具链。
-不是"再 fork 一个 IGV"，而是：**一个 java agent + 一张词表 + 一套给译者用的工具**。
-
-> 原名 `igv-l10n`，0.2.0 起改名 **igv-lingo**（`l10n` 是 localization 的数字缩写，识别度太低）；旧仓库地址会自动跳转。
-
-- 不动 IGV 安装包，不破坏代码签名，不需要 sudo
-- 一条命令安装，删一行就关掉
-- 词表是纯文本 TSV，改一行即时生效，适合协作翻译
-- 内置**字节码级安全审计**，自动避开会改坏 session 文件 / 偏好设置的字符串
-- 已经支持任意语言（`locales/<lang>/strings.tsv`），简体中文是第一个语言包
+给 [IGV Desktop](https://igv.org)（Integrative Genomics Viewer）换上中文界面的开源工具。
+一个零依赖的 java agent + 一份 TSV 词表：**不改 IGV 本体、不破坏签名、随时可以关掉**。
 
 ![IGV 中文菜单栏](docs/screenshot-menubar.png)
 
-![IGV 命令栏](docs/screenshot-window.png)
+---
 
+## 30 秒安装（不需要懂代码）
+
+1. 打开 [Releases](https://github.com/poplarity/igv-lingo/releases/latest)，下载 `igv-lingo-zh_CN-<你的IGV版本>.zip`
+   （不确定版本就下载 2.19 的，通常也能用）
+2. 解压，**双击** `install-mac.command`（Mac）或 `install-windows.bat`（Windows）
+3. 看到「安装完成」后，**完全退出 IGV**（Mac 按 `Command + Q`），再重新打开
+
+菜单栏变成 `文件 / 基因组 / 视图 / 轨道 / 区域 / 工具 / 帮助` 就成功了。
+
+> 第一次双击如果提示"无法打开"：Mac 上**右键 → 打开**，Windows 上点"更多信息 → 仍要运行"。
+> 遇到问题看 [安装指南（图文步骤）](docs/安装指南.md) 或 [常见问题](#常见问题)。
+
+<details>
+<summary>我更习惯命令行</summary>
+
+```bash
+git clone https://github.com/poplarity/igv-lingo.git
+cd igv-lingo
+bin/igv-lingo setup zh_CN
 ```
-$ bin/igv-lingo setup zh_CN
-IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
-版本:    2.19.1
-语言:    zh_CN
-== 审计（生成禁译规则）     禁译规则 1031 条
-== 演练                     命中 110 个类 / 456 处字符串，结构校验通过
-已安装到 ~/.igv/lingo，重启 IGV 生效
-```
+
+卸载：`bin/igv-lingo uninstall`
+
+</details>
+
+---
 
 ## 效果
 
@@ -38,220 +53,122 @@ IGV:     /Applications/IGV_2.19.1.app/Contents/Java/lib/igv.jar
 | Sort By Depth | 按深度排序 |
 | Save PNG Screenshot ... | 保存 PNG 截图... |
 
-当前 zh_CN：**360 条词条，覆盖 110 个类、456 处界面字符串**；菜单栏 72%、比对右键菜单 58%、
-文件/视图动作 52%、通用控件 46%、数据面板 40%。
+当前 zh_CN：**360 条词条**，覆盖 **110 个类 / 456 处**界面字符串。
+菜单栏 72%、比对右键菜单 58%、文件/视图动作 52%、通用控件 46%、数据面板 40%。
 
-## 快速开始
+## 它是怎么做到的
 
-要求：macOS / Linux / Windows，已安装 IGV（任何 2.x 版本），有 JRE 17+（IGV 自带即可）。
+IGV 没有 i18n 框架（整个 jar 只有 2 个 `.properties`，源码里 `ResourceBundle` 出现 0 次），
+界面文字全是编译进 class 的字符串常量。所以汉化只能"改程序"。
+
+IGV Lingo 在**类加载时**改写 class 常量池：只动字符串字面量，译文作为新常量追加，
+原有常量原样保留——IGV 安装目录、签名、更新机制完全不受影响。
+
+```
+igv.jar ──► ClassFileTransformer ──► 常量池里 "File" → "文件" ──► 中文界面
+             (java agent)             (原 "File" 保留)
+```
+
+最麻烦的不是改字节，而是**同一段英文有两个身份**：`"Regions"` 既是菜单名（该翻成"区域"），
+又是 session XML 的标签名（翻了旧会话就打不开）。工具用 ASM 做数据流分析，
+把字面量分成「展示 / 比较 / 结构」三类，对结构类按类禁译。
+
+细节：[原理](docs/how-it-works.md) · [安全规则](docs/safety-rules.md)
+
+## 兼容性
+
+| 维度 | 支持范围 |
+|---|---|
+| IGV | **2.10.3 – 2.19.8 实测可用**；内置 2.19.1 / 2.19.8 / 2.18.4 规则 |
+| 系统 | macOS / Linux / Windows |
+| Java | 11 及以上（IGV 自带即可） |
+
+同一份词表在不同版本上的实测：
+
+| IGV | 替换处 | 结构校验 | 该版本失效词条 |
+|---|---|---|---|
+| 2.19.8 | 455 | 通过 | 1 |
+| 2.18.4 | 449 | 通过 | 7 |
+| 2.16.2 | 436 | 通过 | 22 |
+| 2.12.3 | 430 | 通过 | 28 |
+| 2.10.3 | 416 | 通过 | 40 |
+
+升级 IGV 后重跑 `bin/igv-lingo audit` + `check` 即可。详见 [兼容性说明](docs/compatibility.md)。
+
+## 命令行
+
+给开发者和译者用，普通用户不需要。
+
+| 命令 | 作用 |
+|---|---|
+| `bin/igv-lingo setup [locale]` | 构建 + 审计 + 演练 + 安装 |
+| `bin/igv-lingo install / uninstall` | 只安装 / 只移除加载行 |
+| `bin/igv-lingo status` | 安装状态与最近日志 |
+| `bin/igv-lingo new <locale>` | 为新语言生成词表骨架 |
+| `bin/igv-lingo check` | 校验词表（CI 同款） |
+| `bin/igv-lingo coverage <locale>` | 翻译覆盖率 |
+| `bin/igv-lingo dryrun <locale>` | 离线演练，不启动 IGV |
+| `bin/igv-lingo audit` | 为当前 IGV 版本生成禁译规则 |
+| `bin/igv-lingo package <locale>` | 打发布 zip |
+| `bin/igv-lingo test` | 构建 + 校验 + 演练 |
+
+## 添加一种语言
 
 ```bash
-git clone https://github.com/poplarity/igv-lingo.git
-cd igv-lingo
-bin/igv-lingo setup zh_CN      # 构建 + 审计 + 演练 + 安装
-```
-
-然后**退出并重启 IGV**。验证：
-
-```bash
-bin/igv-lingo status
-# 加载行:   已启用
-# 最近日志: 01:57:42 [igv-lingo] org/broad/igv/ui/IGVMenuBar : 64 处
-```
-
-卸载：`bin/igv-lingo uninstall`（只删加载行，文件保留）。
-
-不想克隆仓库？从 [Releases](https://github.com/poplarity/igv-lingo/releases/latest) 下载
-`igv-lingo-zh_CN-<igv版本>.zip`，解压后 `./install.sh` 即可（只需要 bash + java）。
-
-## 它是怎么工作的
-
-IGV 桌面版**没有 i18n 框架**：整个 `igv.jar` 里只有 2 个 `.properties`，源码里 `ResourceBundle` 出现 0 次，
-界面文字全是硬编码的 Java 字符串常量（实测 1589 个 class、5219 条字面量）。
-
-所以汉化只能"改程序"。igv-lingo 在**类加载时**改写 class 文件常量池：
-
-```
-igv.jar 里的 class
-      │  ClassFileTransformer（java agent）
-      ▼
-CONSTANT_String "File" ──► 追加 CONSTANT_Utf8 "文件"，String 项改指向它
-      │                    （原 Utf8 保留：它可能同时是字段名）
-      ▼
-JVM 看到的中文界面
-```
-
-三条纪律保证不把 class 改坏：
-
-1. 只动 `CONSTANT_String`，不动 `CONSTANT_Utf8`；
-2. 译文作为新项追加，原项不动；
-3. class 内部引用全是常量池下标、没有绝对文件偏移，常量池变长不影响方法体/StackMapTable。
-
-离线演练会对每个改写后的 class 做一次 ASM 完整解析（`parsed ok / bad`），CI 里同样会跑。
-
-## 最难的部分：同一段英文的两个身份
-
-`"Regions"` 既是菜单名（该翻成"区域"），又是 session XML 的标签名（翻了旧会话就打不开）。
-`javac` 会把 `static final String` 内联到使用处，所以它在 class 里就是普通字面量，靠"只翻 ui 包"躲不掉。
-
-`bin/igv-lingo audit` 用 ASM 做数据流分析，把每个字符串字面量分成三类：
-
-| 类别 | 例子 | 处理 |
-|---|---|---|
-| **STRUCT** 写文件 / 读属性 / 反射 / 正则 | `document.createElement("Regions")`、`prefs.get("IGV.Bounds")` | 按类禁译 |
-| **COMPARE** 参与判断 | `nodeName.equals("Regions")`、`map.get("chr1")` | 结构用途字面量 → 一起禁译；否则进人工复核清单 |
-| **DISPLAY** 纯展示 | `new JMenuItem("File")`、`label.setText(...)` | 放心翻译 |
-
-结果写在 `igv/<version>/deny_by_class.tsv`，agent 加载词表时一并读取：
-
-```
-org/broad/igv/session/SessionWriter      Regions
-org/broad/igv/session/IGVSessionReader   Regions
-org/broad/igv/ui/IGVMenuBar              (无规则 -> 正常翻译)
-```
-
-细则见 [docs/safety-rules.md](docs/safety-rules.md)。
-
-## 给别人加语言
-
-```bash
-bin/igv-lingo new ja_JP        # 从本机 igv.jar 生成 2393 行骨架，按区域分好组
+bin/igv-lingo new ja_JP        # 从本机 igv.jar 生成约 2400 行骨架，按区域分组
 # 编辑 locales/ja_JP/strings.tsv
-bin/igv-lingo check            # 校验占位符、重复键、失效词条
-bin/igv-lingo coverage ja_JP   # 看覆盖率
-bin/igv-lingo setup ja_JP      # 安装试用
+bin/igv-lingo check            # 占位符 / 重复键 / 失效词条
+bin/igv-lingo setup ja_JP      # 装到本机试用
 ```
 
-词表格式（TSV，Excel/Numbers 可直接编辑）：
+词表就是 TSV，Excel / Numbers 都能编辑：
 
 ```tsv
 File	ファイル
 Load Genome from File...	ファイルからゲノムを読み込む...
 ```
 
-- 第 3 列可选，写备注，不参与匹配
-- 含 `%s` / `%d` / `\u0001` 的条目必须保留同样数量的占位符，否则 `check` 直接失败
-- 术语一致性用 `locales/<lang>/glossary.tsv` 约束
+只改第二列，第一列一个字符都不要动。详见 [新增语言](docs/adding-a-language.md)。
 
-详见 [docs/adding-a-language.md](docs/adding-a-language.md)。
-
-## 兼容性
-
-| 维度 | 支持范围 |
-|---|---|
-| IGV 版本 | **2.10.3 – 2.19.8 实测可用**；仓库内附 2.19.1 / 2.19.8 / 2.18.4 的禁译规则 |
-| 操作系统 | macOS / Linux / Windows，同一个 `-javaagent` 入口 |
-| Java | agent 目标 Java 11（v55），11 / 17 / 21 均可加载 |
-
-跨版本实测（同一份 360 条词表）：
-
-| IGV | 禁译规则 | 替换处 | 结构校验 | 失效词条 |
-|---|---|---|---|---|
-| 2.19.8 | 1052 | 455 | 通过 | 1 |
-| 2.18.4 | 1019 | 449 | 通过 | 7 |
-| 2.16.2 | 963 | 436 | 通过 | 22 |
-| 2.12.3 | 936 | 430 | 通过 | 28 |
-| 2.10.3 | 951 | 416 | 通过 | 40 |
-
-词表按字面量匹配，老版本里没有的新文案会自动跳过（`check --jar` 会列出失效条目）。
-升级 IGV 后重跑 `bin/igv-lingo audit` + `check` 即可。细节见 [docs/compatibility.md](docs/compatibility.md)。
-
-## 命令一览
-
-| 命令 | 作用 |
-|---|---|
-| `bin/igv-lingo setup [locale]` | 构建 + 审计 + 演练 + 安装（默认 zh_CN） |
-| `bin/igv-lingo install/uninstall` | 只安装 / 只移除加载行 |
-| `bin/igv-lingo status` | 安装状态 + 最近日志 |
-| `bin/igv-lingo new <locale>` | 生成词表骨架 |
-| `bin/igv-lingo check` | 校验全部词表（CI 同款） |
-| `bin/igv-lingo coverage <locale>` | 覆盖率报告 |
-| `bin/igv-lingo dryrun <locale>` | 离线演练，不启动 IGV |
-| `bin/igv-lingo audit` | 对当前 igv.jar 重新生成禁译规则 |
-| `bin/igv-lingo extract` | 导出候选字符串 |
-| `bin/igv-lingo package <locale>` | 打发布 zip（含独立 installer） |
-| `bin/igv-lingo test` | 构建 + 校验 + 演练 |
-| `bin/igv-lingo build` | 只构建 |
-
-环境变量：`JAVA`、`IGV_JAR`、`IGV_VERSION`、`IGV_LINGO_HOME`、`IGV_JAVA_ARGS`。
-
-## 安装原理（为什么不用改 app）
-
-IGV 的 macOS 启动器每次都会把 `~/.igv/java_arguments` 当 JVM 参数文件传给 java：
-
-```bash
-ps aux | grep igv
-# java ... @Java/igv.args ... @/Users/you/.igv/java_arguments --module=org.igv/...
-```
-
-这是官方留的用户级 JVM 参数入口。我们只往里加一行：
-
-```
--javaagent:~/.igv/lingo/igv-lingo-agent.jar=~/.igv/lingo
-```
-
-因此：不改 `/Applications`，不破坏签名，升级 IGV 不被覆盖，删掉这行就完全恢复。
-Windows/Linux 同理（`%USERPROFILE%\.igv\java_arguments` / `~/.igv/java_arguments`）。
-
-## 目录结构
+## 项目结构
 
 ```
 igv-lingo/
-├── bin/igv-lingo                 # 统一入口
-├── src/agent/java/org/igvlingo/  # 运行时 agent（零依赖）
-│   ├── Agent.java               # premain、语言选择、日志
-│   ├── ClassPatcher.java        # 常量池改写
-│   └── StringsTable.java        # 词表 + 禁译规则 + 占位符校验
-├── src/tools/java/.../tools/    # 构建期工具（ASM）
-│   ├── Audit.java               # 字节码安全审计
-│   ├── Extract.java             # 候选导出 / 词表骨架
-│   ├── Check.java               # 词表校验
-│   ├── Coverage.java            # 覆盖率
-│   └── DryRun.java              # 离线演练 + 结构校验
-├── locales/zh_CN/               # 词表、术语表、元信息
-├── igv/2.19.1/                  # 每个 IGV 版本一份禁译规则（自动生成）
-├── docs/                        # 原理、加语言、安全规则
-└── scripts/                     # build / package-install
+├── bin/igv-lingo            命令行入口
+├── src/agent/               运行时 agent（零依赖，Java 11）
+├── src/tools/               audit / extract / check / coverage / dryrun
+├── locales/zh_CN/           词表、术语表
+├── igv/<version>/           每个 IGV 版本一份禁译规则
+├── scripts/                 双击安装脚本（Mac / Windows）
+└── docs/                    原理、安装、安全规则、兼容性
 ```
-
-## 常见问题
-
-**为什么不直接 fork IGV 改源码？**
-可以，而且更"正统"，但那样每跟一个 IGV 版本就要重做一次合并。现在的做法把"翻译"和"IGV 代码"解耦：词表按字面量匹配，IGV 升级后重跑 `audit` 即可，通常不用改 agent。
-
-**会不会把 session 文件改坏？**
-不会。这正是 `audit` 和 `deny_by_class.tsv` 存在的意义；`check` 和 CI 都会守住这条线。
-
-**IGV 升级后还能用吗？**
-能。先 `bin/igv-lingo audit` 重新生成规则，再 `bin/igv-lingo check` 看哪些词条失效，然后 `setup`。
-
-**为什么有的地方还是英文？**
-两种原因：一是词表还没翻（看 `coverage`）；二是那条字符串被判定为结构 key（看 `igv/<version>/deny_by_class.tsv`），翻了会出问题。
-
-**Windows 上能用吗？**
-agent 是纯 Java，跨平台。`bin/igv-lingo` 是 bash 脚本，Windows 需用 Git Bash 或 WSL 运行；
-也可以直接用发布包里的 `install.sh`（同样需要 bash），或手工把 `igv-lingo-agent.jar`、
-`locales/`、`deny_by_class.tsv` 放到 `%USERPROFILE%\.igv\lingo\`，再往
-`%USERPROFILE%\.igv\java_arguments` 加同一行 `-javaagent`。
-
-**为什么不用 ResourceBundle？**
-IGV 没有。加 i18n 需要改 2333 处调用点，那是另一个量级的项目；这条路线可以作为上游 PR 慢慢推进。
-
-## 验证记录
-
-| 验证 | 结果 |
-|---|---|
-| 真机启动 IGV 2.19.1（`@~/.igv/java_arguments` 生产路径） | 菜单栏：文件 / 基因组 / 视图 / 轨道 / 区域 / 工具 / 帮助 |
-| 离线全量演练 | 110 个类、456 处替换，`结构校验通过` |
-| ASM 结构校验 | 每个改写后的 class 都能完整解析 |
-| 假 igv.jar 自检（`tests/run.sh`） | `File` 被翻译、`Regions` 保持原文 |
-| 审计可复现 | 两次 `audit` 输出逐字节相同 |
-| 安装 / 卸载 / 重装 | 沙箱 HOME 下全部通过，重复安装不产生重复行 |
 
 ## 参与
 
-见 [CONTRIBUTING.md](CONTRIBUTING.md)。翻译不需要懂 Java：改 TSV、跑 `check`、提 PR 即可。
+翻译不需要懂 Java：改 TSV、跑 `check`、提 PR 即可。
 
-## License
+- [贡献指南](CONTRIBUTING.md)
+- 想认领的活：[补全面板与通用控件](https://github.com/poplarity/igv-lingo/issues/1)、[日本語](https://github.com/poplarity/igv-lingo/issues/2)
+- 术语表：`locales/zh_CN/glossary.tsv`
 
-MIT。IGV 本身归 Broad Institute，本项目只分发"差异"（agent + 词表），不包含 IGV 的任何二进制。
+## 常见问题
+
+**会不会把我的 IGV 改坏？**
+不会。IGV 本体一个文件都没动，只在 `~/.igv/lingo` 放词表，并在 `~/.igv/java_arguments` 加一行（修改前自动备份）。
+删掉 `~/.igv/lingo` 和那一行就完全恢复。
+
+**为什么有的地方还是英文？**
+两种可能：词表还没翻到（看 `coverage`），或那条字符串是文件格式的一部分（看 `igv/<version>/deny_by_class.tsv`），翻了会出问题。
+
+**IGV 升级后还能用吗？**
+能。重跑 `bin/igv-lingo audit` 生成新版本规则，再 `check` 看哪些词条失效。
+
+**为什么不做成 IGV 插件？**
+IGV 的插件接口不提供界面文字替换能力；而改源码再分发要跟着 IGV 版本反复合并。agent 方案把"翻译"和"IGV 代码"解耦了。
+
+**支持 IGV 2.9 吗？**
+不支持。2.9 及更早是 Java 8 时代，agent 用了 Java 11 API。
+
+## 许可证
+
+[MIT](LICENSE)。IGV 归 Broad Institute 所有；本项目只分发差异部分（agent + 词表），不含 IGV 任何二进制。

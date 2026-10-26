@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 — 2026-10-26
+
+**给不写代码的人做的版本。**
+
+- 安装：发布包内新增双击安装——macOS `install-mac.command`、Windows `install-windows.bat`，
+  以及对应的卸载脚本；脚本会自检能否加载，失败时弹窗提示
+- 安装：`install.sh` 重写为「检查 → 复制 → 写加载行 → 自检 → 弹窗」的完整流程，
+  无论成功失败都给出下一步指引
+- 文档：新增 [安装指南（零基础版）](docs/安装指南.md) 与英文 [installation guide](docs/installation.md)
+- 文档：README 重写，中文为默认语言，顶部加 `简体中文 · English` 切换
+- 文档：补充徽章（CI / 版本 / 许可证 / IGV / Java）、常见问题、项目结构
+- 修复：`package` 未包含安装脚本；安装脚本里的卸载提示写错文件名
+
+
 ## 0.2.0 — 2026-10-26
 
 **改名**：`igv-l10n` → **`igv-lingo`**。
