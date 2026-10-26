@@ -378,3 +378,107 @@ Select Track Color (Negative Values)	选择轨道颜色（负值）
   Type of Graph	  图形类型
   Windowing Function	  窗口函数
 Group by strand	按链分组
+
+# ---- 第三批：菜单提示、数据面板、通用控件、首选项 ----
+Capture and save a PNG image	截图并保存为 PNG
+Capture and save an SVG image	截图并保存为 SVG
+Clears locally cached versions of IGV hosted genomes	清除本地缓存的 IGV 托管基因组
+Click this item bring up its editor	点击此项打开编辑器
+Create a .genome file	创建 .genome 文件
+Customize attribute display to show only checked attributes	自定义属性显示，只显示勾选的属性
+Display application information	显示应用信息
+Edit color legends and scales	编辑颜色图例与色阶
+Filter tracks by attribute value	按属性值筛选轨道
+Group tracks by attribute value	按属性值分组轨道
+Load BAM or VCF tracks from an htsget server	从 htsget 服务器载入 BAM 或 VCF 轨道
+Load a session	载入会话
+Load an assemlby and tracks from a UCSC Track Hub	从 UCSC Track Hub 载入组装与轨道
+Load regions from a file	从文件载入区域
+Load tracks or sample information from a server	从服务器载入轨道或样本信息
+Navigate regions	浏览区域
+Overlay data (wig) tracks by attribute value	按属性值叠加数据（wig）轨道
+Reload the current session	重新载入当前会话
+Remove Imported Genomes...	移除已导入的基因组...
+Removes user-defined genomes from the drop-down list	从下拉列表中移除用户自定义基因组
+Rename tracks by attribute value	按属性值重命名轨道
+Resize track heights to make best use of vertical space without scrolling	调整轨道高度，在不滚动的情况下充分利用垂直空间
+Restores all user preferences to their default settings.	将所有用户偏好恢复为默认值。
+Save all defined regions to a file	将所有已定义区域保存到文件
+Save the current session	保存当前会话
+Set the height for all tracks	设置所有轨道的高度
+Set user specific preferences	设置用户偏好
+Sort tracks by attribute value	按属性值排序轨道
+Switch the current genome	切换当前基因组
+The Genome server is currently inaccessible.	基因组服务器当前无法访问。
+Add or edit region description:	添加或编辑区域描述：
+Chromosome '' not found	染色体“”未找到
+Click and drag to zoom in.	按住并拖动可放大。
+Click attribute heading to sort	点击属性表头排序
+Click to collapse insertion	点击折叠插入
+Click to expand insertion (bases)	点击展开插入（ 个碱基）
+No chromosome is specified. Can't create a region without a chromosome.	未指定染色体。没有染色体无法创建区域。
+No genome found	未找到基因组
+No regions have been selected for removal.	没有选中要移除的区域。
+Region is to large to copy sequence data.	区域太大，无法复制序列数据。
+Regions cannot be created in gene list or split-screen views.	基因列表或分屏视图中无法创建区域。
+Regions cannot be created in the All Chromosomes view.	全染色体视图中无法创建区域。
+Search for regions containing the specified description text.	搜索描述中包含指定文字的区域。
+Sort by breakpoint amplitudes	按断点幅度排序
+To reorder panels drag and drop entries in the list below.	拖动下方列表中的条目即可重新排列面板。
+Total Tracks Selected: 	已选轨道：
+View regions from all chromosomes (otherwise, current chromosome only)	查看所有染色体的区域（否则仅当前染色体）
+When navigating to a region, change zoom level?	跳转到区域时是否改变缩放级别？
+Panel: 	面板：
+Scale = 	比例 = 
+New center = 	新中心 = 
+New end = 	新终点 = 
+New start = 	新起点 = 
+Data panel width = 	数据面板宽度 = 
+Current frames	当前帧
+Back          Alt+Arrow	后退          Alt+方向键
+Forward     Alt+Arrow	前进     Alt+方向键
+Clear all	全部清除
+Encapsulated Postscript Files (*.eps)	封装 PostScript 文件 (*.eps)
+Joint Photographic Experts Group Files (*.jpeg)	JPEG 图像文件 (*.jpeg)
+Portable Document FormatFles (*.pdf)	PDF 文件 (*.pdf)
+Portable Network Graphics Files (*.png)	PNG 图像文件 (*.png)
+Scalable Vector Graphics Files (*.svg)	SVG 矢量图文件 (*.svg)
+Please select a column to obtain signal values from	请选择用于获取信号值的列
+Prompt	提示
+Status bar: 	状态栏：
+The first field	第一个字段
+The third field	第三个字段
+You chose 	你选择了 
+htsget URL	htsget URL
+ minutes	 分钟
+ < 1 minute	小于 1 分钟
+M of M	M / M
+Logged in as: 	已登录：
+Filter:  	筛选：
+Selected genomes will be downloaded and added to the genome dropdown list.	选中的基因组将被下载并加入基因组下拉列表。
+The genome '' could not be read.	基因组“”无法读取。
+Error sorting tracks. Sort might not be accurate.	轨道排序出错，排序结果可能不准确。
+Advanced	高级
+Cache directory: 	缓存目录：
+Missense	错义
+Nonsense	无义
+Splice_site	剪接位点
+Synonymous	同义
+Targeted_Region	目标区域
+# ---- 第三批（补） ----
+Load tracks or sample information	载入轨道或样本信息
+BLAT sequence	BLAT 序列
+Click and drag to zoom	按住并拖动可缩放
+Go to 	跳转到 
+Load track from 	从  载入轨道
+drag and drop	拖放
+region of interest	关注区域
+zoom out	缩小
+ of  kb	 /  kb
+1 minute	1 分钟
+Error loading genome 	载入基因组  出错
+Hidden	隐藏
+Non-coding_Transcript	非编码转录本
+Other_AA_changing	其他改变氨基酸的变异
+Other_likely_neutral	其他可能中性的变异
+Truncating	截短
