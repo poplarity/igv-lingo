@@ -59,6 +59,9 @@ bin/igv-l10n status
 
 卸载：`bin/igv-l10n uninstall`（只删加载行，文件保留）。
 
+不想克隆仓库？从 [Releases](https://github.com/poplarity/igv-l10n/releases/latest) 下载
+`igv-l10n-zh_CN-<igv版本>.zip`，解压后 `./install.sh` 即可（只需要 bash + java）。
+
 ## 它是怎么工作的
 
 IGV 桌面版**没有 i18n 框架**：整个 `igv.jar` 里只有 2 个 `.properties`，源码里 `ResourceBundle` 出现 0 次，
