@@ -24,6 +24,19 @@ public final class DryRun {
     private DryRun() {
     }
 
+    private static void deleteRecursively(Path p) throws IOException {
+        if (!Files.exists(p)) return;
+        try (var s = Files.walk(p)) {
+            s.sorted(java.util.Comparator.reverseOrder()).forEach(x -> {
+                try {
+                    Files.deleteIfExists(x);
+                } catch (IOException ignored) {
+                    // 删不掉就算了
+                }
+            });
+        }
+    }
+
     public static void run(String[] args) throws IOException {
         Path jar = null, locale = null, deny = null, out = null;
         for (int i = 0; i < args.length; i++) {
@@ -39,6 +52,10 @@ public final class DryRun {
             throw new IllegalArgumentException("需要 --jar 和 --locale");
         }
         StringsTable table = StringsTable.load(locale, deny);
+        if (out != null) {
+            // 清掉上一次的产物，避免"上次没禁译"的旧 class 留在目录里造成误判
+            deleteRecursively(out.resolve("classes"));
+        }
 
         int nClasses = 0, nStrings = 0, bad = 0;
         List<String> rows = new ArrayList<>();

@@ -27,6 +27,22 @@ jobs:
       - name: 自检（假 igv.jar：audit -> dryrun -> 断言）
         run: tests/run.sh
 
+      - name: 切到 Java 11 验证 agent 兼容性
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: agent 在 Java 11 上加载
+        run: |
+          mkdir -p build/j11/locales/zh_CN
+          cp build/agent.jar build/j11/igv-l10n-agent.jar
+          cp locales/zh_CN/strings.tsv build/j11/locales/zh_CN/
+          java -version
+          java -javaagent:build/j11/igv-l10n-agent.jar=build/j11 -version
+          grep -q "语言 zh_CN" build/j11/igv-l10n.log
+          grep -q "词条 360" build/j11/igv-l10n.log
+
       - name: 上传构建产物
         uses: actions/upload-artifact@v4
         with:

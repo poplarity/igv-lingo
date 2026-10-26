@@ -158,6 +158,7 @@ cmd_dryrun() {
             --jar) jar="$2"; shift 2 ;;
             --deny) deny="$2"; shift 2 ;;
             --locale) locale="$2"; shift 2 ;;
+            --out) rest+=(--out "$2"); shift 2 ;;
             -*) rest+=("$1"); shift ;;
             *) locale="$1"; shift ;;
         esac
@@ -229,7 +230,7 @@ cmd_install() {
     {
         echo ""
         echo "# IGV 多语言（igv-l10n）：删掉这一行即可关闭"
-        echo "-javaagent:${L10N_HOME}/igv-l10n-agent.jar=${L10N_HOME}"
+        echo "\"-javaagent:${L10N_HOME}/igv-l10n-agent.jar=${L10N_HOME}\""
     } >> "$JAVA_ARGS_FILE"
 
     echo

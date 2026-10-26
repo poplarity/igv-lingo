@@ -39,18 +39,21 @@ done
 rm -rf build/agent build/tools build/agent.jar build/tools.jar
 mkdir -p build/agent/classes build/tools/classes build/stage-agent/META-INF
 
-compile() { # $1=outdir $2=classpath $3...=sources
-    local out="$1" cp="$2"; shift 2
+# $1=outdir $2=classpath $3=release $4...=sources
+# agent 用 Java 11 目标：IGV 2.16 及更早版本自带的是 JRE 11，
+# 高版本 class（v61+）会在那些 JVM 上直接 UnsupportedClassVersionError。
+compile() {
+    local out="$1" cp="$2" rel="$3"; shift 3
     if [[ "$COMPILER" == javac ]]; then
-        javac -encoding UTF-8 --release 17 -nowarn -cp "$cp" -d "$out" "$@"
+        javac -encoding UTF-8 --release "$rel" -nowarn -cp "$cp" -d "$out" "$@"
     else
-        "$JAVA" -jar vendor/ecj-3.38.0.jar -source 17 -target 17 -nowarn -proceedOnError \
+        "$JAVA" -jar vendor/ecj-3.38.0.jar -source "$rel" -target "$rel" -nowarn -proceedOnError \
             -encoding UTF-8 -cp "$cp" -d "$out" "$@"
     fi
 }
 
 echo "[1/3] 编译 agent"
-compile build/agent/classes "" $(find src/agent/java -name '*.java')
+compile build/agent/classes "" 11 $(find src/agent/java -name '*.java')
 
 echo "[2/3] 打包 agent"
 cp src/agent/MANIFEST.MF build/stage-agent/META-INF/MANIFEST.MF
@@ -64,7 +67,7 @@ else
 fi
 
 echo "[3/3] 编译工具"
-compile build/tools/classes "build/agent/classes:$ASM_CP" \
+compile build/tools/classes "build/agent/classes:$ASM_CP" 17 \
     $(find src/tools/java -name '*.java')
 
 echo "完成:"

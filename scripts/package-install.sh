@@ -23,7 +23,7 @@ mv "$ARGS.tmp" "$ARGS"
 {
     echo ""
     echo "# IGV 多语言（igv-l10n）：删掉这一行即可关闭"
-    echo "-javaagent:${DEST}/igv-l10n-agent.jar=${DEST}"
+    echo "\"-javaagent:${DEST}/igv-l10n-agent.jar=${DEST}\""
 } >> "$ARGS"
 
 echo "已安装到 $DEST"
