@@ -46,7 +46,10 @@ if (Test-Path $argsFile) {
 }
 $lines += ""
 $lines += "# IGV 多语言（igv-lingo）：删掉这一行即可关闭"
-$lines += "`"-javaagent:$dest\igv-lingo-agent.jar=$dest`""
+# Java argument files treat backslashes inside quotes as escape characters.
+# Keep quotes for paths containing spaces, but use forward slashes for Java.
+$javaDest = $dest.Replace('\', '/')
+$lines += "`"-javaagent:$javaDest/igv-lingo-agent.jar=$javaDest`""
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($argsFile, ($lines -join "`n") + "`n", $utf8)
 Write-Host "✅ 已让 IGV 启动时加载汉化" -ForegroundColor Green
